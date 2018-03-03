@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load rango_template_tags %}
+
+<!--Provides the top navigation bar and about info on the bottom.-->
+<!--Use title_block to assign title, body_block for all page content-->
+<!--Import with {% extends 'pubway/base.html' %}-->
+
+<html>
+<head lang="en">
+	<title>
+		Pubway -
+		{% block title_block %}
+			Glasgow
+		{% endblock %}
+	</title>
+</head>
+<body>
+    <div id="logo">Here will be the logo</div>
+    <div id="nav-bar">Here will be the top navigation bar soon.</div>
+	<div id="page_content">
+	{% block body_block %}
+		This is body_block default content.
+	{% endblock %}
+	</div>
+	<hr />
+	<div id="about">
+        <h5>About</h5>
+        Authors: Matej, Will, Rodrigo, Pierre
+	</div>
+</body>
+</html>
