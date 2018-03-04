@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 # Authentication models
 
-class User(models.Model):
+class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
 
@@ -19,9 +19,5 @@ class User(models.Model):
     no_reviews = models.IntegerField()
     no_likes = models.IntegerField()
     picture = models.ImageField(upload_to='profile_images', blank=True)
-
-    # if Python 2.7.x
-    def __str__(self):
-        return self.user.nickname
 
 # Something else...
