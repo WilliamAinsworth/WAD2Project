@@ -12,12 +12,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
 
     # The additional attributes we wish to include.
-    forename = models.TextField()
-    surname = models.TextField()
-    nickname = models.TextField()
-    email = models.EmailField()
-    no_reviews = models.IntegerField()
-    no_likes = models.IntegerField()
+    no_reviews = models.IntegerField(default=0)
+    no_likes = models.IntegerField(default=0)
     picture = models.ImageField(upload_to='profile_images', blank=True)
 
 # Something else...

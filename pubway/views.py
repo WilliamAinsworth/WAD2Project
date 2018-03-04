@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+
 #
 # User registration
 #
@@ -64,9 +65,10 @@ def register(request):
 
     # Render the template depending on the context.
     return render(request, 'pubway/register.html',
-                      {'user_form': user_form,
-                       'profile_form': profile_form,
-                       'registered': registered})
+                  {'user_form': user_form,
+                   'profile_form': profile_form,
+                   'registered': registered})
+
 
 def user_login(request):
     # If the request is a HTTP POST, try to pull out the relevant information.
@@ -108,6 +110,7 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render(request, 'pubway/login.html', {})
+
 
 @login_required
 def user_logout(request):
