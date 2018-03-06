@@ -1,7 +1,8 @@
 from pubway.forms import UserForm, UserProfileForm
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.core.urlresolvers import reverse
+#from django.core.urlresolvers import reverse #no longer supported
+from django.urls import reverse
 
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
@@ -118,3 +119,12 @@ def user_logout(request):
     logout(request)
     # Take the user back to the homepage.
     return HttpResponseRedirect(reverse('index'))
+
+
+def new_subcrawl(request):
+    response = render(request, 'pubway/base.html', context={})
+    return response
+
+def index(request):
+    response = render(request, 'pubway/base.html', context={})
+    return response
