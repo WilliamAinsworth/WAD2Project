@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^logout/$', views.user_logout, name='logout'),
     #Subcrawl
     url(r'^subcrawl/new/$', views.new_subcrawl, name='new_subcrawl'),
+    url(r'^stationPage/', views.stationPage, name='stationPage'),
 ]
