@@ -1,4 +1,5 @@
 from pubway.forms import UserForm, UserProfileForm
+from pubway.models import Station
 
 from django.http import HttpResponse, HttpResponseRedirect
 #from django.core.urlresolvers import reverse #no longer supported
@@ -7,7 +8,6 @@ from django.urls import reverse
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
 
 #
 # User registration
@@ -129,6 +129,12 @@ def index(request):
     response = render(request, 'pubway/index.html', context={})
     return response
 
-def stationPage(request):
-    response = render(request, 'pubway/stationPage.html', context={})
-    return response
+def show_station(request, station_name_slug):
+    context_dict = {}
+    try:
+        station = Station.objects.get(slug=station_name_slug)
+
+    except Station.DoesNotExist:
+        context_dict = {}
+
+    return render(request, 'pubway/stationPage.html', context_dict)

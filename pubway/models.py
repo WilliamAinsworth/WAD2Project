@@ -35,4 +35,19 @@ class Subcrawl(models.Model):
 class Place(models.Model):
     pass # Matt: needed this for  foreign key
 
-# Something else...
+# StationPage
+class Station(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    firstTrainMonSat = models.TimeField(blank=True,null=True)
+    lastTrainMonSat = models.TimeField(blank=True,null=True)
+    firstTrainSun = models.TimeField(blank=True,null=True)
+    lastTrainSun = models.TimeField(blank=True,null=True)
+
+    slug = models.SlugField(unique=True,default='')
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Station, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
