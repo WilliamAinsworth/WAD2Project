@@ -126,7 +126,7 @@ def new_subcrawl(request):
     return response
 
 def index(request):
-    response = render(request, 'pubway/base.html', context={})
+    response = render(request, 'pubway/index.html', context={})
     return response
 
 def stationPage(request):
