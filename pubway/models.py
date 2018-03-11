@@ -4,13 +4,15 @@ import uuid
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # Authentication models
 
-class UserProfile(models.Model):
+class UserProfile(User):
     # This line is required. Links UserProfile to a User model instance.
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    #user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # The additional attributes we wish to include.
     no_reviews = models.IntegerField(default=0)

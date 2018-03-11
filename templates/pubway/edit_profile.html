@@ -6,8 +6,8 @@ Register
 {% endblock %}
 
 {% block body_block %}
-<h1>Register Page</h1>
- <form method="post">
+<h2>Sign up</h2>
+  <form method="post">
     {% csrf_token %}
     {% for field in form %}
       <p>
@@ -21,6 +21,7 @@ Register
         {% endfor %}
       </p>
     {% endfor %}
-    <button type="submit">Sign up</button>
+    <img  class="img-responsive watch-right" alt="not found" src="{{p.picture.url}}"/>
+      <button type="submit">Save</button>
   </form>
  {% endblock %}
