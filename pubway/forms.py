@@ -7,11 +7,11 @@ from pubway.models import UserProfile
 
 class RegistrationForm(UserCreationForm):
     class Meta:
-        model = UserProfile
+        model = User
         fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2',)
 
 class UserEditForm(UserChangeForm):
     picture = forms.ImageField(required=False)
     class Meta:
-        model = UserProfile
+        model = User
         fields = ('first_name', 'last_name', 'username', 'email', 'password', 'picture',)

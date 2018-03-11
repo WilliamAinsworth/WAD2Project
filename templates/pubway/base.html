@@ -1,93 +1,49 @@
-<!DOCTYPE html>
 {% load staticfiles %}
 
-{% comment %}
-<!--Provides the top navigation bar and about info on the bottom.-->
-<!--Use title_block to assign title, body_block for all page content-->
-<!--Import with {% extends 'pubway/base.html' %}-->
-{% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-<html>
-<head lang="en">
-    <title>
-        Pubway - {% block title_block %} Glasgow {% endblock %}
-    </title>
-    {# <!-- Bootstrap core CSS --> #}
-    <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-    {# <!-- Custom styles for this template --> #}
-    <link href="http://v4-alpha.getbootstrap.com/examples/dashboard/dashboard.css"
-          rel="stylesheet">
-</head>
-<body>
-<div id="logo">Above this bar will be the logo</div>
-<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-    <button class="navbar-toggler navbar-toggler-right hidden-lg-up"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbar"
-            aria-controls="navbar"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="{% url 'index' %}">Pubway</a>
-    <div class="collapse navbar-collapse" id="navbar">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'index' %}">
-                    Home
-                </a>
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'new_subcrawl' %}">
-                    Organise a Subcrawl
-                </a>
-            </li>
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'myprofile' %}">
-                    My Profile
-                </a>
-            </li>
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'changepassword' %}">
-                    Change Password
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">
-                    Logout
-                </a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'register' %}">
-                    Register Here
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">
-                    Login
-                </a>
-            </li>
-            {% endif %}
-            <li class="nav-item" style="color:gray;">Dropdowns coming soon</li>
-        </ul>
-    </div>
-</nav>
+    <title>{% block head_title %}MVP Landing{% endblock %}</title>
 
-<div id="page_content">
-    {% block body_block %} This is body_block default content. {% endblock %}
-</div>
-<hr/>
-<div id="about">
-    <h5>About</h5>
-    Authors: Matej, Will, Rodrigo, Pierre
-</div>
+    {% include 'pubway/elements/head_css.html' %}
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="http://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
-<script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-</body>
+      <style>
+      {% block style %}{% endblock %}
+      </style>
+
+
+
+  </head>
+
+  <body>
+  {% include 'pubway/elements/navbar.html' %}
+
+{% block jumbotron %}
+
+            {% endblock %}
+    <div class="container">
+
+
+
+            {% block content %}
+
+            {% endblock %}
+
+
+    </div> <!-- /container -->
+
+    {% include "pubway/elements/javascript.html" %}
+
+  </body>
+<footer
+{% include 'pubway/elements/footer.html' %}
+    </footer>
 </html>

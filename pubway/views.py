@@ -28,7 +28,7 @@ def register(request):
             return redirect('index')
     else:
         form = RegistrationForm()
-    return render(request, 'pubway/register.html', {'form': form})
+    return render(request, 'pubway/accounts/registration_form.html', {'form': form})
 
 
 def user_login(request):
@@ -70,7 +70,7 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render(request, 'pubway/login.html', {})
+        return render(request, 'pubway/accounts/login.html', {})
 
 
 @login_required
@@ -90,7 +90,7 @@ def myprofile(request):
             return redirect('index')
     else:
         form = UserEditForm(instance=request.user)
-    return render(request, 'pubway/edit_profile.html', {'form': form})
+    return render(request, 'pubway/accounts/edit_profile.html', {'form': form})
 
 
 @login_required
@@ -106,7 +106,7 @@ def changepassword(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'pubway/change_password.html', {
+    return render(request, 'pubway/accounts/password_change_form.html', {
         'form': form
     })
 #

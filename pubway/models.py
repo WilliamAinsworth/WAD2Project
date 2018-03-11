@@ -10,9 +10,9 @@ from django.dispatch import receiver
 
 # Authentication models
 
-class UserProfile(User):
+class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
-    #user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # The additional attributes we wish to include.
     no_reviews = models.IntegerField(default=0)
