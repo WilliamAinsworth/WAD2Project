@@ -133,6 +133,7 @@ def show_station(request, station_name_slug):
     context_dict = {}
     try:
         station = Station.objects.get(slug=station_name_slug)
+        context_dict['station'] = station
 
     except Station.DoesNotExist:
         context_dict = {}

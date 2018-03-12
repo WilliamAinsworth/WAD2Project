@@ -31,13 +31,10 @@ class Subcrawl(models.Model):
     def __str__(self):
         return self.name
 
-# Places
-class Place(models.Model):
-    pass # Matt: needed this for  foreign key
-
 # StationPage
 class Station(models.Model):
     name = models.CharField(max_length=128, unique=True)
+    stringName = models.CharField(max_length=128,default='')
     firstTrainMonSat = models.TimeField(blank=True,null=True)
     lastTrainMonSat = models.TimeField(blank=True,null=True)
     firstTrainSun = models.TimeField(blank=True,null=True)
@@ -51,3 +48,20 @@ class Station(models.Model):
 
     def __str__(self):
         return self.name
+
+# Places
+class Place(models.Model):
+    id=models.IntegerField(primary_key=True,unique=True)
+    closeStation = models.ForeignKey(Station,default='') #many-to-one mapping
+    name = models.CharField(max_length=128,default='')
+    postcode = models.CharField(max_length=7,default='')
+    address = models.CharField(max_length=128,default='')
+    website = models.URLField(default='')
+
+    #type of place is dealth with by boolean values
+    isPub = models.BooleanField(default=False)
+    isRestaurant = models.BooleanField(default=False)
+    isNightClub = models.BooleanField(default=False)
+    isOther = models.BooleanField(default=False)
+
+

@@ -12,7 +12,16 @@
 
 <body>
     {% block body_block %}
-        <h1>Station Page name comes here</h1>
+        {% if station %}
+            <h1>{{ station.stringName }}</h1>
+            <div id="stationTimes">
+                Train times: <br>
+                Monday - Saturday: {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }} <br>
+                Sunday: {{ station.firstTrainSun }} - {{ station.lastTrainSun }} <br>
+            </div>
+        {% else %}
+            <h1>Station does not exist!</h1>
+        {% endif %}
         Places content to come here </br>
         Add Place to come
     {% endblock %}
