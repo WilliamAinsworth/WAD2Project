@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    {% block body_block %}
+    {% block content %}
         {% if station %}
             <h1>{{ station.stringName }}</h1>
             <div id="stationTimes">
@@ -19,6 +19,10 @@
                 Monday - Saturday: {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }} <br>
                 Sunday: {{ station.firstTrainSun }} - {{ station.lastTrainSun }} <br>
             </div>
+            <p id="addPlaceButton">
+                <button type="button" onclick="addPlace()">Add a place!</button>
+                <script src="/static/js/stationPageScript.js"></script>
+            </p>
         {% else %}
             <h1>Station does not exist!</h1>
         {% endif %}

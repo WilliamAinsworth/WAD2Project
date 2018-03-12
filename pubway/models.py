@@ -53,12 +53,28 @@ class Station(models.Model):
 
 # Places
 class Place(models.Model):
-    id=models.IntegerField(primary_key=True,unique=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     closeStation = models.ForeignKey(Station,default='') #many-to-one mapping
     name = models.CharField(max_length=128,default='')
     postcode = models.CharField(max_length=7,default='')
     address = models.CharField(max_length=128,default='')
     website = models.URLField(default='')
-    relevance = forms.ChoiceField(label="",widget=forms.Select(),required=True)
+
+    PUB_CHOICE = 1
+    RESTAURANT_CHOICE = 2
+    NIGHTCLUB_CHOICE = 3
+    OTHER_CHOICE = 4
+
+    PLACE_CHOICES = (
+        (PUB_CHOICE, "Pub"),
+        (RESTAURANT_CHOICE, "Restaurant"),
+        (NIGHTCLUB_CHOICE, "Nightclub"),
+        (OTHER_CHOICE, "Other")
+    )
+
+    place_type = models.IntegerField(choices=PLACE_CHOICES,default=PUB_CHOICE)
+
+
+
 
 
