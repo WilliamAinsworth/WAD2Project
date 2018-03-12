@@ -1,0 +1,18 @@
+{% extends 'pubway/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title_block %}
+Register
+{% endblock %}
+
+{% block content %}
+<h2>My Profile</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <img  class="img-responsive watch-right" alt="image not found" src="{{p.picture.url}}"/>
+      <button type="submit">Save</button>
+  </form>
+ {% endblock %}

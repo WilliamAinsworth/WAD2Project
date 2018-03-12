@@ -1,0 +1,99 @@
+{% extends 'pubway/base.html' %}
+{% load staticfiles %}
+
+<!-- Add jQuery library -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+<!-- Add maphilight plugin -->
+<script type="text/javascript" src="jquery.maphilight.min.js"></script>
+
+<!-- Activate maphilight plugin -->
+<script type="text/javascript">$(function() {
+        $('.map').maphilight();
+    });
+</script>
+
+{% block title_block %}
+    Home
+{% endblock %}
+{% block content %}
+<body>
+        
+    <h1>Subway Map</h1>
+    <p>
+        Station: <b id='station'> </b>
+    </p>
+    <!-- div class="map" style="display: block; background-image: url(http://127.0.0.1:8000/static/images/subwayMap.png); background-size: contain; position: relative; padding: 0px; width: 800px; height: 400px;">
+        <canvas style=
+            "width: 800px;
+             height: 400px;
+             position: absolute;
+             left: 0px; top: 0px; 
+             padding: 0px; 
+             border: 0px;" 
+             height="400" 
+             width="800">
+        </canvas>
+        <img class="map maphilighted" src="{% static "images/subwaymap.png" %}" usemap="#Map" style="opacity: 1e-10; position: absolute; left: 0px; top: 0px; padding: 0px; border: 0px;"></div-->
+
+    <img src="{% static "images/subwaymap.png" %}"  class="map maphilighted" alt="Subway Map" border="1" usemap="#Map">
+
+    <!-- img src="pict.jpg" alt="Bookshelf with links, click areas to follow the link" class="map maphilighted" width="905" height="551" border="0" usemap="#demo" style="opacity: 0; position: absolute; left: 0px; top: 0px; padding: 0px; border: 0px;" -->
+    <map name="Map">
+        <area shape="rect" title="Govan" coords="60,510,160,550" alt="Govan" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="Ibrox" coords="200,620,280,660" alt="Ibrox" onmouseover="mouseOver(slt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="Cessnock" coords="350,640,500,690" alt="Cessnock" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="Kinning Park" coords="530,640,660,710" alt="Kinning Park" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="Shields Road" coords="710,640,820,710" alt="Shields Road" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="West Street" coords="900,620,1000,690" alt="West Street" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="Bridge Street" coords="1040,410,1130,580" alt="Bridge Street" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="St.Enoch" coords="1070,260,1210,300" alt="St.Enoch" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="Buchanan Street" coords="1000,100,1150,170" alt="Buchanan Street" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="Cowcaddens" coords="810,40,990,70" alt="Cowcaddens" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="St.George's Cross" coords="610,10,780,80" alt="St.George's Cross" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="Kelvinbridge" coords="400,10,600,50" alt="Kelvinbridge" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="Hillhead" coords="220,30,360,80" alt="Hillhead" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="Kelvinhall" coords="50,110,210,150" alt="Kelvinhall" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+        <area shape="rect" title="Partick" coords="0,260,110,300" alt="Partick" onmouseover="mouseOver(alt)" onmouseout="mouseOut()" href='#'>
+
+      </map>
+
+    <!-- <img src="{% static "images/subwaymap.png" %}" alt="Subway Map" />  -->
+</div>
+
+<ul style="list-style-type:disc">
+    <li>Partick</li>
+    <li>Kelvinhall</li>
+    <li>Hillhead</li>
+    <li>Kelvinbridge</li>
+    <li>St.George's Cross</li>
+    <li>Cowcaddens</li>
+    <li>Buchanan Street</li>
+    <li>St.Enoch</li>
+    <li>Bridge Street</li>
+    <li>West Street</li>
+    <li>Shields Road</li>
+    <li>Kinning Park</li>
+    <li>Cessnock</li>
+    <li>Ibrox</li>
+    <Govan</li>
+  </ul>
+  <!-- h1 id="demo" onmouseover="mouseOver()" onmouseout="mouseOut()">Mouse over me</h1 -->
+
+  <script>
+    function mouseOver(x) {
+        //alert(x);
+        document.getElementById('station').innerHTML = x;
+        //document.getElementById(alt).style.border = "red";
+        border = 1;
+    }
+    
+    function mouseOut() {
+        pass;
+        //document.getElementById("demo").style.color = "black";
+    }
+</script>
+</body>
+{% endblock %}
+
+

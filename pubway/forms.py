@@ -1,16 +1,17 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from pubway.models import UserProfile
 
-#User Authentication
+#User Management
 
-class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
+class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password',)
+        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2',)
 
-class UserProfileForm(forms.ModelForm):
+class UserEditForm(UserChangeForm):
+    picture = forms.ImageField(required=False)
     class Meta:
-        model = UserProfile
-        fields = ('picture',)
+        model = User
+        fields = ('first_name', 'last_name', 'username', 'email', 'password', 'picture',)
