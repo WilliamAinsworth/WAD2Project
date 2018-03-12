@@ -57,11 +57,6 @@ class Place(models.Model):
     postcode = models.CharField(max_length=7,default='')
     address = models.CharField(max_length=128,default='')
     website = models.URLField(default='')
-
-    #type of place is dealth with by boolean values
-    isPub = models.BooleanField(default=False)
-    isRestaurant = models.BooleanField(default=False)
-    isNightClub = models.BooleanField(default=False)
-    isOther = models.BooleanField(default=False)
+    relevance = forms.ChoiceField(label="",widget=forms.Select(),required=True)
 
 
