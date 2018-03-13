@@ -61,7 +61,21 @@
     <!-- <img src="{% static "images/subwaymap.png" %}" alt="Subway Map" />  -->
 </div>
 
-<ul style="list-style-type:disc">
+<div>
+	{% if stations %}
+	<ul>
+		{% for station in stations %}
+			<li>
+				<a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+		<strong>There are no stations present.</strong>
+	{% endif %}
+    </div>
+
+<!-- ul style="list-style-type:disc">
     <li>Partick</li>
     <li>Kelvinhall</li>
     <li>Hillhead</li>
@@ -76,9 +90,9 @@
     <li>Kinning Park</li>
     <li>Cessnock</li>
     <li>Ibrox</li>
-    <Govan</li>
+    <li>Govan</li>
   </ul>
-  <!-- h1 id="demo" onmouseover="mouseOver()" onmouseout="mouseOut()">Mouse over me</h1 -->
+  < h1 id="demo" onmouseover="mouseOver()" onmouseout="mouseOut()">Mouse over me</h1 -->
 
   <script>
     function mouseOver(x) {
@@ -86,6 +100,9 @@
         document.getElementById('station').innerHTML = x;
         //document.getElementById(alt).style.border = "red";
         border = 1;
+    }
+    function grabStation(){
+
     }
     
     function mouseOut() {

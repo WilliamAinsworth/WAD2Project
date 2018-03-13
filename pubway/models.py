@@ -48,6 +48,9 @@ class Station(models.Model):
         self.slug = slugify(self.name)
         super(Station, self).save(*args, **kwargs)
 
+    class Meta:
+	    verbose_name_plural = 'stations'
+
     def __str__(self):
         return self.name
 
@@ -73,6 +76,9 @@ class Place(models.Model):
     )
 
     place_type = models.IntegerField(choices=PLACE_CHOICES,default=PUB_CHOICE)
+
+    class Meta:
+	    verbose_name_plural = 'places'
 
 
 

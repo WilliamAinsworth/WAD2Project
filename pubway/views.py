@@ -118,7 +118,11 @@ def new_subcrawl(request):
     return response
 
 def index(request):
-    response = render(request, 'pubway/index.html', context={})
+    station_list = Station.objects.all()
+    
+    context_dict = {"stations":station_list}
+
+    response = render(request, 'pubway/index.html', context_dict)
     return response
 
 def show_station(request, station_name_slug):
@@ -131,3 +135,4 @@ def show_station(request, station_name_slug):
         context_dict = {}
 
     return render(request, 'pubway/stationPage.html', context_dict)
+
