@@ -5,61 +5,50 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
     <title>Pubway - {% block head_title %}Glasgow{% endblock %}</title>
-
     {% include 'pubway/elements/head_css.html' %}
 
     <style>
-      {% block style %}{% endblock %}
+    {% block style %}{% endblock %}
     </style>
-
-
 </head>
 
 <body>
-{% include 'pubway/elements/navbar.html' %}
+<div class="wrapper">
 
-{% block jumbotron %}
+    {% include 'pubway/elements/navbar.html' %}
+    {% block jumbotron %}
 
-<div class="jumbotron">
- <div class="container">
-	<div class="row">
-		<div class='col-sm-6'>
-		<h1>Charing cross</h1>
-		<p>There are a couple of Pubs.</p>
-		<p>
-		<a class="btn btn-lg btn-primary" href="" role="button">5 Likes &raquo;</a>
-            <a class="btn btn-lg btn-primary" href="" role="button">Reviews &raquo;</a>
-		</p>
-		</div>
-		<div class='col-sm-6' >
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/2uLYO1LUf6Q" frameborder="0" allowfullscreen></iframe>
-
- 		</div>
-		</div>
-	</div>
- </div>
-{% endblock %}
-<div class="container">
-
-
-    {% block content %}
-
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class='col-sm-6'>
+                    <h1>Charing cross</h1>
+                    <p>There are a couple of Pubs.</p>
+                    <p>
+                        <a class="btn btn-lg btn-primary" href="" role="button">5 Likes &raquo;</a>
+                        <a class="btn btn-lg btn-primary" href="" role="button">Reviews &raquo;</a>
+                    </p>
+                </div>
+                <div class='col-sm-6'>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/2uLYO1LUf6Q" frameborder="0"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endblock %}
-
-
-</div> <!-- /container -->
-
-{% include "pubway/elements/javascript.html" %}
-
+    <div class="container">
+        {% block content %}{% endblock %}
+        {% include 'pubway/elements/footer.html' %}
+    </div> <!-- /container -->
+    {% include "pubway/elements/javascript.html" %}
+</div>
 </body>
-<footer>
-    {% include 'pubway/elements/footer.html' %}
-</footer>
 </html>
