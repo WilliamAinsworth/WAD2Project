@@ -80,8 +80,12 @@ class Place(models.Model):
     place_type = models.IntegerField(choices=PLACE_CHOICES,default=PUB_CHOICE)
 
     class Meta:
-	    verbose_name_plural = 'places'
+        verbose_name_plural = 'places'
 
+#to have multiple places, we can create an image class
+class Image(models.Model):
+    place = models.ForeignKey(Place)
+    image= models.ImageField(upload_to='place_images')
 
 
 

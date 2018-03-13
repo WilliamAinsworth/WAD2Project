@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.urls import reverse_lazy
 from django.contrib.auth import views as auth_views
 from pubway import views
@@ -10,7 +12,7 @@ urlpatterns = [
 
     url(r'^accounts/login/$',
         auth_views.LoginView.as_view(
-            template_name='pubway/accounts/login.html'),
+        template_name='pubway/accounts/login.html'),
         name='login'),
     url(r'^accounts/logout/$', views.user_logout, name='logout'),
     url(r'^accounts/profile/$', views.myprofile, name='myprofile'),
@@ -21,3 +23,5 @@ urlpatterns = [
     url(r'^googleMapsTest$', views.googleMapsTest, name='googleMapsTest'),
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
