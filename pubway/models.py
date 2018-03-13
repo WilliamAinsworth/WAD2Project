@@ -84,7 +84,7 @@ class Place(models.Model):
 
 #to have multiple places, we can create an image class
 class Image(models.Model):
-    place = models.ForeignKey(Place)
+    place = models.ForeignKey(Place,on_delete=models.SET_NULL, null=True)
     image= models.ImageField(upload_to='place_images')
 
 
