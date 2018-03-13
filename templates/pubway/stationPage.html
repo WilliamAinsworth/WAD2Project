@@ -5,8 +5,15 @@
 
 <html>
 <head lang="en">
-    {% block title_block %}
-        stationPage name to come here
+    {% block head_title %}
+        {{ station.stringName }}
+    {% endblock %}
+    {% block style %}
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+        height: 100%;
+        }
     {% endblock %}
 </head>
 
@@ -23,6 +30,27 @@
                 <button type="button" onclick="addPlace()">Add a place!</button>
                 <script src="/static/js/stationPageScript.js"></script>
             </p>
+            <div id="map" style="width:60%;height:400px"></div>
+
+            <script>
+            function myMap() {
+                var myCenter = new google.maps.LatLng({{ station.latitude }}, {{ station.longitude }});
+                var mapCanvas = document.getElementById("map");
+                var mapOptions = {center: myCenter, zoom: 16};
+                var map = new google.maps.Map(mapCanvas, mapOptions);
+                var marker = new google.maps.Marker({position:myCenter});
+                marker.setMap(map);
+
+                google.maps.event.addListener(marker,'click',function() {
+                    var infowindow = new google.maps.InfoWindow({content:"{{ station.stringName }} Station!"});
+                    infowindow.open(map,marker);
+                    });
+
+                infowindow.open(map,marker);
+            }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN1R6rdaYW__YOLaw8uHv5RxssqRl9Vbg&callback=myMap"
+            async defer></script>
         {% else %}
             <h1>Station does not exist!</h1>
         {% endif %}

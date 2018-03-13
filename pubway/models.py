@@ -41,6 +41,8 @@ class Station(models.Model):
     lastTrainMonSat = models.TimeField(blank=True,null=True)
     firstTrainSun = models.TimeField(blank=True,null=True)
     lastTrainSun = models.TimeField(blank=True,null=True)
+    latitude = models.DecimalField(max_digits=10,decimal_places=6,blank=True,null=True)
+    longitude = models.DecimalField(max_digits=10,decimal_places=6,blank=True,null=True)
 
     slug = models.SlugField(unique=True,default='')
 

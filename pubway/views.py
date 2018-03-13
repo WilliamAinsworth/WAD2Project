@@ -131,3 +131,7 @@ def show_station(request, station_name_slug):
         context_dict = {}
 
     return render(request, 'pubway/stationPage.html', context_dict)
+
+def googleMapsTest(request):
+    reponse = render(request,'pubway/googleMapsTest.html',context={})
+    return reponse
