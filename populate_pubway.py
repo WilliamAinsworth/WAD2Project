@@ -29,6 +29,9 @@ def populate():
     for station,station_data in stations.items():
         s = add_station(station,station_data["stringName"],station_data["firstTrainMonSat"],station_data["lastTrainMonSat"],station_data["firstTrainSun"],station_data["lastTrainSun"])
 
+    for s in Station.objects.all():
+            print("- {0}".format(str(s)))
+
 def add_station(name,stringName,firstTrainMonSat,lastTrainMonSat,firstTrainSun,lastTrainSun):
     s = Station.objects.get_or_create(name=name)[0]
     s.stringName=stringName
