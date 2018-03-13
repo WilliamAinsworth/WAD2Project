@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,39 +11,56 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>{% block head_title %}MVP Landing{% endblock %}</title>
+    <title>Pubway - {% block head_title %}Glasgow{% endblock %}</title>
 
     {% include 'pubway/elements/head_css.html' %}
 
-      <style>
+    <style>
       {% block style %}{% endblock %}
-      </style>
+
+    </style>
 
 
+</head>
 
-  </head>
-
-  <body>
-  {% include 'pubway/elements/navbar.html' %}
+<body>
+{% include 'pubway/elements/navbar.html' %}
 
 {% block jumbotron %}
 
-            {% endblock %}
-    <div class="container">
+<div class="jumbotron">
+ <div class="container">
+	<div class="row">
+		<div class='col-sm-6'>
+		<h1>Charing cross</h1>
+		<p>There are a couple of Pubs.</p>
+		<p>
+		<a class="btn btn-lg btn-primary" href="" role="button">5 Likes &raquo;</a>
+            <a class="btn btn-lg btn-primary" href="" role="button">Reviews &raquo;</a>
+		</p>
+		</div>
+		<div class='col-sm-6' >
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/2uLYO1LUf6Q" frameborder="0" allowfullscreen></iframe>
+
+ 		</div>
+		</div>
+	</div>
+ </div>
+{% endblock %}
+<div class="container">
 
 
+    {% block content %}
 
-            {% block content %}
-
-            {% endblock %}
+    {% endblock %}
 
 
-    </div> <!-- /container -->
+</div> <!-- /container -->
 
-    {% include "pubway/elements/javascript.html" %}
+{% include "pubway/elements/javascript.html" %}
 
-  </body>
+</body>
 <footer>
-{% include 'pubway/elements/footer.html' %}
-    </footer>
+    {% include 'pubway/elements/footer.html' %}
+</footer>
 </html>
