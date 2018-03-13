@@ -54,7 +54,7 @@ class Station(models.Model):
 # Places
 class Place(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    closeStation = models.ForeignKey(Station,default='') #many-to-one mapping
+    closeStation = models.ForeignKey(Station,default='',on_delete=models.SET_NULL, null=True) #many-to-one mapping
     name = models.CharField(max_length=128,default='')
     postcode = models.CharField(max_length=7,default='')
     address = models.CharField(max_length=128,default='')

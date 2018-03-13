@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,39 +11,38 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>{% block head_title %}MVP Landing{% endblock %}</title>
+    <title>Pubway - {% block head_title %}Glasgow{% endblock %}</title>
 
     {% include 'pubway/elements/head_css.html' %}
 
-      <style>
+    <style>
       {% block style %}{% endblock %}
-      </style>
+
+    </style>
 
 
+</head>
 
-  </head>
-
-  <body>
-  {% include 'pubway/elements/navbar.html' %}
+<body>
+{% include 'pubway/elements/navbar.html' %}
 
 {% block jumbotron %}
 
-            {% endblock %}
-    <div class="container">
+{% endblock %}
+<div class="container">
 
 
+    {% block content %}
 
-            {% block content %}
-
-            {% endblock %}
+    {% endblock %}
 
 
-    </div> <!-- /container -->
+</div> <!-- /container -->
 
-    {% include "pubway/elements/javascript.html" %}
+{% include "pubway/elements/javascript.html" %}
 
-  </body>
+</body>
 <footer>
-{% include 'pubway/elements/footer.html' %}
-    </footer>
+    {% include 'pubway/elements/footer.html' %}
+</footer>
 </html>
