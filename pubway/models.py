@@ -81,6 +81,13 @@ class Place(models.Model):
     class Meta:
 	    verbose_name_plural = 'places'
 
+<<<<<<< HEAD
+=======
+#to have multiple places, we can create an image class
+class Image(models.Model):
+    place = models.ForeignKey(Place,on_delete=models.SET_NULL, null=True)
+    image= models.ImageField(upload_to='place_images')
+>>>>>>> 75924f8917eb38f08a381c0dac02422ea8bdbd94
 
 
 
