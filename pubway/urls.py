@@ -20,7 +20,6 @@ urlpatterns = [
     #Subcrawl
     url(r'^subcrawl/new/$', views.new_subcrawl, name='new_subcrawl'),
     url(r'^(?P<station_name_slug>[\w\-]+)/$', views.show_station, name='show_station'),
-    url(r'^googleMapsTest$', views.googleMapsTest, name='googleMapsTest'),
 
 ]
 if settings.DEBUG:

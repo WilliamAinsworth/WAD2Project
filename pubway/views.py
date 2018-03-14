@@ -12,6 +12,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+
 #
 # User registration
 #
@@ -133,7 +134,3 @@ def show_station(request, station_name_slug):
         context_dict = {}
 
     return render(request, 'pubway/stationPage.html', context_dict)
-
-def googleMapsTest(request):
-    reponse = render(request,'pubway/googleMapsTest.html',context={})
-    return reponse
