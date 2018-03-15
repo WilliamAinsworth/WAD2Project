@@ -21,6 +21,5 @@ urlpatterns = [
     url(r'^subcrawl/new/$', views.new_subcrawl, name='new_subcrawl'),
     url(r'^(?P<station_name_slug>[\w\-]+)/$', views.show_station, name='show_station')
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
