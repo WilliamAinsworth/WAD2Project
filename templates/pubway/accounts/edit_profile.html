@@ -8,11 +8,15 @@ Register
 {% endblock %}
 
 {% block content %}
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3'>
 <h2>My Profile</h2>
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
     <img  class="img-responsive watch-right" alt="image not found" src="{{p.picture.url}}"/>
-      <button type="submit">Save</button>
+      <input class='btn btn-block btn-primary' type="submit" value="Save" />
   </form>
+    </div>
+</div>
  {% endblock %}

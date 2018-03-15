@@ -6,18 +6,24 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from imagekit.models import ImageSpecField, ProcessedImageField
+from pilkit.processors import ResizeToFill
 
 # Authentication models
 
+
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='userprofile')
 
     # The additional attributes we wish to include.
     no_reviews = models.IntegerField(default=0)
     no_likes = models.IntegerField(default=0)
-    picture = models.ImageField(upload_to='profile_images', blank=True)
+    picture = ProcessedImageField(upload_to='profiles',
+                                           processors=[ResizeToFill(100, 50)],
+                                           format='JPEG',
+                                           options={'quality': 60},
+                                           default ='default.jpeg')
     subcrawls = models.ManyToManyField('Subcrawl')
 
 # Subcrawls
