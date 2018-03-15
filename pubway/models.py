@@ -41,6 +41,8 @@ class Station(models.Model):
     lastTrainMonSat = models.TimeField(blank=True,null=True)
     firstTrainSun = models.TimeField(blank=True,null=True)
     lastTrainSun = models.TimeField(blank=True,null=True)
+    latitude = models.DecimalField(max_digits=8, decimal_places=6, blank=True, null=True)
+    longitude = models.DecimalField(max_digits=8, decimal_places=6, blank=True, null=True)
 
     slug = models.SlugField(unique=True,default='')
 
@@ -80,6 +82,10 @@ class Place(models.Model):
     class Meta:
 	    verbose_name_plural = 'places'
 
+#to have multiple places, we can create an image class
+class Image(models.Model):
+    place = models.ForeignKey(Place,on_delete=models.SET_NULL, null=True)
+    image= models.ImageField(upload_to='place_images')
 
 
 

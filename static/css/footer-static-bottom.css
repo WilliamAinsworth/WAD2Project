@@ -1,7 +1,10 @@
-.page-footer{
-    position:absolute;
-    bottom:0;
-    width:100%;
+/**
+ * Footer Styles
+ */
+
+.page-footer {
+    clear: both;
+    padding: 1rem;
     background-color: #4B515D;
     color: #FFF;
 }

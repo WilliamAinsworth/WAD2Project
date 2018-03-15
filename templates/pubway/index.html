@@ -47,7 +47,7 @@
 	<ul>
 		{% for station in stations %}
 			<li>
-				<a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+				<a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a>
 			</li>
 		{% endfor %}
 	</ul>

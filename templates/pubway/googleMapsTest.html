@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+{% extends 'pubway/base.html' %}
+
+<html>
+    {% block head_title %}Google Maps Test{% endblock %}
+    {% block style %}
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+        height: 100%;
+        }
+    {% endblock %}
+
+    {% block content %}
+        <h1>My First Google Map</h1>
+        <div id="map" style="width:60%;height:400px"></div>
+
+        <script>
+        function myMap() {
+            var myCenter = new google.maps.LatLng(55.875236, -4.293352);
+            var mapCanvas = document.getElementById("map");
+            var mapOptions = {center: myCenter, zoom: 16};
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+            var marker = new google.maps.Marker({position:myCenter});
+            marker.setMap(map);
+
+            google.maps.event.addListener(marker,'click',function() {
+                var infowindow = new google.maps.InfoWindow({content:"Hillhead Subway!"});
+                infowindow.open(map,marker);
+                });
+
+            infowindow.open(map,marker);
+        }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN1R6rdaYW__YOLaw8uHv5RxssqRl9Vbg&callback=myMap"
+        async defer></script>
+    {% endblock %}
+
+
+</html>

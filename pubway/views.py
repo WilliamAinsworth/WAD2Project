@@ -12,6 +12,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+
 #
 # User registration
 #
@@ -119,9 +120,7 @@ def new_subcrawl(request):
 
 def index(request):
     station_list = Station.objects.all()
-    
-    context_dict = {"stations":station_list}
-
+    context_dict = {"stations": station_list}
     response = render(request, 'pubway/index.html', context_dict)
     return response
 
@@ -135,4 +134,3 @@ def show_station(request, station_name_slug):
         context_dict = {}
 
     return render(request, 'pubway/stationPage.html', context_dict)
-
