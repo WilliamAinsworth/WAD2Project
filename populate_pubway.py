@@ -3,7 +3,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','WAD2Project.settings')
 
 import django
 django.setup()
-from pubway.models import Station
+from pubway.models import Station, Place
 from datetime import time
 
 def populate():
@@ -25,6 +25,14 @@ def populate():
         "Partick": {"stringName":"Partick", "firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.869841, "longitude":-4.308683},
         "Kelvinhall": {"stringName":"Kelvinhall", "firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.870939, "longitude":-4.299956}
     }
+    places = {
+        "QMU": {"pc":"G12 8QN", "adr":"22 University Gardens, Glasgow", "web":"qmunion.org.uk", "closeSt":"Hillhead", "type":"Pub",},
+        "GUU": {"pc":"G12 8LX", "adr":"32 University Avenue, Glasgow", "web":"guu.co.uk", "closeSt":"Kelvin Bridge", "type":"Pub",},
+        "Bank Street": {"pc":"G12 8LZ", "adr":"52 Bank St, Glasgow G12 8LZ", "web":"bankst.co.uk", "closeSt":"Kelvin Bridge", "type":"Pub",},
+        "The Sparkle Horse": {"pc":"G11 5QR", "adr":"Dowanhill St, Glasgow", "web":"thesparklehorse.com", "closeSt":"", "type":"Restaurant",},
+        "Pizza Crolla": {"pc":"G1 2LL", "adr":"156 Buchanan St, Glasgow", "web":None, "closeSt":"Buchanan Street", "type":"Restaurant",},
+        #"": {"pc":"G", "adr":"", "web":"", "closeSt":"", "type":"",},
+    }
 
     for station,station_data in stations.items():
         s = add_station(station,station_data["stringName"],station_data["firstTrainMonSat"],station_data["lastTrainMonSat"],station_data["firstTrainSun"],station_data["lastTrainSun"],station_data["latitude"],station_data["longitude"])
@@ -43,6 +51,11 @@ def add_station(name,stringName,firstTrainMonSat,lastTrainMonSat,firstTrainSun,l
     s.longitude=longitude
     s.save()
     return s
+
+def add_place(name, data):
+    p = Place.objects.get_or_create(name=name)
+    
+
 
 if __name__ == '__main__':
     print("Running pubway population script...")

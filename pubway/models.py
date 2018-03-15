@@ -29,7 +29,7 @@ class UserProfile(models.Model):
 # Subcrawls
 class Subcrawl(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=64, unique=False) # Unique? Pros: nice url; cons: long names required after a while
+    name = models.CharField(max_length=64, unique=True)
     date_time = models.DateTimeField()
     is_public = models.BooleanField()
     loc = models.ForeignKey('Place', null=True, on_delete=models.SET_NULL, related_name='subcrawl_loc')
