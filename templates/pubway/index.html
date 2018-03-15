@@ -8,12 +8,7 @@
 {% block content %}
 <body>
     <h1>Subway Map</h1>
-    {% for station in stations %}
-        {% if station=}
-			<li>
-				<a href="{% url 'show_station' station.slug %}">{{ station.firstTrainMonSat }}</a>
-			</li>
-		{% endfor %}
+   
     <p>
         Station: <b id='station'> </b>
     </p>
@@ -41,7 +36,7 @@
 
     <!-- <img src="{% static "images/subwaymap.png" %}" alt="Subway Map" />  -->
 </div>
-
+<!--
 <div>
 	{% if stations %}
 	<ul>
@@ -55,7 +50,7 @@
 		<strong>There are no stations present.</strong>
 	{% endif %}
     </div>
-
+-->
   <script>
 
     function mouseOver(x) {
@@ -63,6 +58,7 @@
         document.getElementById('station').innerHTML = x;
         //document.getElementById(alt).style.border = "red";
         border = 1;
+
     }
 
 </script>
