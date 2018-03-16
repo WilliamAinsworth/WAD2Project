@@ -44,6 +44,7 @@ class Station(models.Model):
     latitude = models.DecimalField(max_digits=8, decimal_places=6, blank=True, null=True)
     longitude = models.DecimalField(max_digits=8, decimal_places=6, blank=True, null=True)
 
+
     slug = models.SlugField(unique=True,default='')
 
     def save(self, *args, **kwargs):
