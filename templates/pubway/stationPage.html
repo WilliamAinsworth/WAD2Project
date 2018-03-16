@@ -28,8 +28,16 @@
             </div>
             <p id="addPlaceButton">
                 <button type="button" onclick="addPlace()">Add a place!</button>
-                <script src="/static/js/stationPageScript.js"></script>
             </p>
+
+            <div id="places_list">
+            <u1>
+            {% for place in places %}
+                    <li>{{ place.name }}</li>
+            {% endfor %}
+            </u1>
+            </div>
+
             <div id="map" style="width:60%;height:400px"></div>
 
             <script>
@@ -49,8 +57,7 @@
                 infowindow.open(map,marker);
             }
             </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN1R6rdaYW__YOLaw8uHv5RxssqRl9Vbg&callback=myMap"
-            async defer></script>
+
         {% else %}
             <h1>Station does not exist!</h1>
         {% endif %}
