@@ -14,9 +14,14 @@ Register
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    <img  class="img-responsive watch-right" alt="image not found" src="{{p.picture.url}}"/>
-      <input class='btn btn-block btn-primary' type="submit" value="Save" />
+
+    <input class='btn btn-block btn-primary' type="submit" value="Save" />
   </form>
     </div>
 </div>
+    <div class='row'>
+<div class='col-sm-6 col-sm-offset-3 text-align-center'>
+        <p>Need to <a href="{% url 'avatar_change' %}">Change Avatar</a>?</p>
+</div>
+    </div>
  {% endblock %}
