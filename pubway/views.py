@@ -126,8 +126,17 @@ def new_subcrawl(request):
 
 
 def index(request):
-    station_list = Station.objects.all()
-    context_dict = {"stations": station_list}
+    context_dict = {}
+    try:
+        station_list = Station.objects.all()
+        #places = Place.objects.filter(closeStation=station)
+        places_list = Place.objects.all()
+        context_dict['stations'] = station_list
+        context_dict['places'] = places_list
+
+    except Station.DoesNotExist:
+        context_dict = {}
+
     response = render(request, 'pubway/index.html', context_dict)
     return response
 
