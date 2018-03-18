@@ -1,476 +1,483 @@
-{% extends 'pubway/base.html' %}
-{% load staticfiles %}
-{% load pubway_template_tags %}
+{% extends 'pubway/base.html' %} {% load staticfiles %} {% load pubway_template_tags %} {% block title_block %} Home {% endblock%} {% block content %}
 
-{% block title_block %}
-    Home
-{% endblock %}
+<h1>Subway Map</h1>
 
-{% block content %}
+<script>
+    function mouseOver(hoveredStation) {
 
-    <h1>Subway Map</h1>
 
-            <script>
-                    function mouseOver(hoveredStation) {
+        document.getElementById("Govan").style.display = "none";
+        document.getElementById("Ibrox").style.display = "none";
+        document.getElementById("Cessnock").style.display = "none";
+        document.getElementById("Kinning Park").style.display = "none";
+        document.getElementById("Shields Road").style.display = "none";
+        document.getElementById("West Street").style.display = "none";
+        document.getElementById("Bridge Street").style.display = "none";
+        document.getElementById("St. Enoch").style.display = "none";
+        document.getElementById("Buchanan Street").style.display = "none";
+        document.getElementById("Cowcaddens").style.display = "none";
+        document.getElementById("Kelvinbridge").style.display = "none";
+        document.getElementById("Hillhead").style.display = "none";
+        document.getElementById("Kelvinhall").style.display = "none";
+        document.getElementById("Partick").style.display = "none";
+        document.getElementById("St. George's Cross").style.display = "none";
+        document.getElementById("Base").style.display = "none";
 
-                        
-                        document.getElementById("Govan").style.display = "none";
-                        document.getElementById("Ibrox").style.display = "none";
-                        document.getElementById("Cessnock").style.display = "none";
-                        document.getElementById("Kinning Park").style.display = "none";
-                        document.getElementById("Shields Road").style.display = "none";
-                        document.getElementById("West Street").style.display = "none";
-                        document.getElementById("Bridge Street").style.display = "none";
-                        document.getElementById("St. Enoch").style.display = "none";
-                        document.getElementById("Buchanan Street").style.display = "none";
-                        document.getElementById("Cowcaddens").style.display = "none";
-                        document.getElementById("Kelvinbridge").style.display = "none";
-                        document.getElementById("Hillhead").style.display = "none";
-                        document.getElementById("Kelvinhall").style.display = "none";
-                        document.getElementById("Partick").style.display = "none";
-                        document.getElementById("St. George's Cross").style.display = "none";
-                        document.getElementById("Base").style.display = "none";
-                        
 
-                        var x = document.getElementById(hoveredStation);
-                        x.style.display = "block";
-
-                        /*if (x.style.display === "none") {
-                            x.style.display = "block";
-                        }*/
-                        
-                        
-                        //hideAllExcept(hoveredStation);
-
-                    }
-
-                    function mouseOut(y){
-                        pass;
-                       
-                    }
-
-                    function hideAllExcept(chosenStation){
-                        var stations = ["Govan", "Ibrox", "Cessnock", "Kinning Park", "Shields Road", "West Street", "Bridge Street", "St. Enoch", "Buchanan Street", "Cowcaddens","St. George's Cross", "Kelvinbridge", "Hillhead", "Kelvinhall", "Partick" ];
-                        
-                        for (i = 0; i < stations.length; i++) { 
-                            if (stations[i] == chosenStation){
-                                pass;
-                            } else{
-                                
-                                var curStation = document.getElementById(stations[i]);
-                                curStation.style.display = "none";  
-                            }
-                    
-                        }
-
-                    }
-    
-            </script>
-    
-    <div id="Base">
-        <ul>
-            <li><b>Station</b></li>
-            <li>Train Times Monday - Saturday:
-                </br>
-                Hover over station to view train times.
-            </li>
-            <li>Train Times Sunday:
-                </br>
-                Hover over station to view train times.
-            </li>
-            
-        </ul>
+        var x = document.getElementById(hoveredStation);
         
-    
+        x.style.display = "block";
 
-    </div>
+        /*if (x.style.display === "none") {
+            x.style.display = "block";
+        }*/
 
-    <div id="Govan" style="display:none;">
-            {% if stations %}
-            <ul>
-                {% for station in stations %}
-                    {% if station.stringName == "Govan" %}
-                    <li>
-                            <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                        </li>
-                    <li>Train Times Monday - Saturday:
-                    </br>
-                    {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                    </li>
-                    <li>Train Times Sunday:
-                        </br>
-                        {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                        </li>
-                        <!-- img src="{% static "images/Govan.jpg" %}" width="300" height=ato alt="Govan" -->
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% else %}
-                <strong>There are no stations present.</strong>
-            {% endif %}
-    </div>
-    <div id="Ibrox" style="display:none;">
-            {% if stations %}
-            <ul>
-                {% for station in stations %}
-                    {% if station.stringName == "Ibrox" %}
-                    <li>
-                            <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                        </li>
-                    <li>Train Times Monday - Saturday:
-                    </br>
-                    {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                    </li>
-                    <li>Train Times Sunday:
-                        </br>
-                        {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                        </li>
-                        
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% else %}
-                <strong>There are no stations present.</strong>
-            {% endif %}
-    </div>
-    <div id="Cessnock" style="display:none;">
-            {% if stations %}
-            <ul>
-                {% for station in stations %}
-                    {% if station.stringName == "Cessnock" %}
-                    <li>
-                            <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                        </li>
-                    <li>Train Times Monday - Saturday:
-                    </br>
-                    {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                    </li>
-                    <li>Train Times Sunday:
-                        </br>
-                        {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                        </li>
-                        
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% else %}
-                <strong>There are no stations present.</strong>
-            {% endif %}
-    </div>
-    <div id="Kinning Park" style="display:none;">
-            {% if stations %}
-            <ul>
-                {% for station in stations %}
-                    {% if station.stringName == "Kinning Park" %}
-                    <li>
-                            <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                        </li>
-                    <li>Train Times Monday - Saturday:
-                    </br>
-                    {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                    </li>
-                    <li>Train Times Sunday:
-                        </br>
-                        {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                        </li>
-                        
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% else %}
-                <strong>There are no stations present.</strong>
-            {% endif %}
-    </div>
-    <div id="Shields Road" style="display:none;">
-            {% if stations %}
-            <ul>
-                {% for station in stations %}
-                    {% if station.stringName == "Shields Road" %}
-                    <li>
-                            <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                        </li>
-                    <li>Train Times Monday - Saturday:
-                    </br>
-                    {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                    </li>
-                    <li>Train Times Sunday:
-                        </br>
-                        {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                        </li>
-                        
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% else %}
-                <strong>There are no stations present.</strong>
-            {% endif %}
-    </div>
-    <div id="West Street" style="display:none;">
-            {% if stations %}
-            <ul>
-                {% for station in stations %}
-                    {% if station.stringName == "West Street" %}
-                    <li>
-                            <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                        </li>
-                    <li>Train Times Monday - Saturday:
-                    </br>
-                    {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                    </li>
-                    <li>Train Times Sunday:
-                        </br>
-                        {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                        </li>
-                        
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% else %}
-                <strong>There are no stations present.</strong>
-            {% endif %}
-    </div>
-    <div id="Bridge Street" style="display:none;">
-            {% if stations %}
-            <ul>
-                {% for station in stations %}
-                    {% if station.stringName == "Bridge Street" %}
-                    <li>
-                            <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                        </li>
-                    <li>Train Times Monday - Saturday:
-                    </br>
-                    {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                    </li>
-                    <li>Train Times Sunday:
-                        </br>
-                        {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                        </li>
-                        
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% else %}
-                <strong>There are no stations present.</strong>
-            {% endif %}
-    </div>
-    <div id="St. Enoch" style="display:none;">
-            {% if stations %}
-            <ul>
-                {% for station in stations %}
-                    {% if station.stringName == "St. Enoch" %}
-                    <li>
-                            <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                        </li>
-                    <li>Train Times Monday - Saturday:
-                    </br>
-                    {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                    </li>
-                    <li>Train Times Sunday:
-                        </br>
-                        {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                        </li>
-                        
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% else %}
-                <strong>There are no stations present.</strong>
-            {% endif %}
-    </div>
-    <div id="Buchanan Street" style="display:none;">
-            {% if stations %}
-            <ul>
-                {% for station in stations %}
-                    {% if station.stringName == "Buchanan Street" %}
-                    <li>
-                        <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                    </li>
-                    <li>Train Times Monday - Saturday:
-                    </br>
-                    {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                    </li>
-                    <li>Train Times Sunday:
-                        </br>
-                        {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                        </li>
-                        
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% else %}
-                <strong>There are no stations present.</strong>
-            {% endif %}
-    </div>
-    <div id="Cowcaddens" style="display:none;">
-            {% if stations %}
-            <ul>
-                {% for station in stations %}
-                    {% if station.stringName == "Cowcaddens" %}
-                    <li>
-                            <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                    </li>
-                    <li>Train Times Monday - Saturday:
-                    </br>
-                    {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                    </li>
-                    <li>Train Times Sunday:
-                        </br>
-                        {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                        </li>
-                        
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% else %}
-                <strong>There are no stations present.</strong>
-            {% endif %}
-    </div>
-    <div id="Kelvinbridge" style="display:none;">
-        {% if stations %}
-        <ul>
-            {% for station in stations %}
-                {% if station.stringName == "Kelvinbridge" %}
 
-                <li>
-                    <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b>
-                </li>
+        //hideAllExcept(hoveredStation);
 
-                <li>Train Times Monday - Saturday:
-                    </br>
-                    {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                </li>
+    }
 
-                <li>Train Times Sunday:
-                    </br>
-                    {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                </li>
-                    
-                {% endif %}
-            {% endfor %}
-        </ul>
-        {% else %}
-            <strong>There are no stations present.</strong>
-        {% endif %}
-    </div>
-    <div id="Hillhead" style="display:none;">
-        {% if stations %}
-        <ul>
-            {% for station in stations %}
-                {% if station.stringName == "Hillhead" %}
-                <li>
-                        <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                    </li>
-                <li>Train Times Monday - Saturday:
-                </br>
-                {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                </li>
-                <li>Train Times Sunday:
-                    </br>
-                    {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                    </li>
-                    
-                {% endif %}
-            {% endfor %}
-        </ul>
-        {% else %}
-            <strong>There are no stations present.</strong>
-        {% endif %}
-    </div>
-    <div id="Kelvinhall" style="display:none;">
-        {% if stations %}
-        <ul>
-            {% for station in stations %}
-                {% if station.stringName == "Kelvinhall" %}
-                <li>
-                    <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                </li>
-                <li>Train Times Monday - Saturday:
-                </br>
-                {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                </li>
-                <li>Train Times Sunday:
-                    </br>
-                    {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                    </li>
-                    
-                {% endif %}
-            {% endfor %}
-        </ul>
-        {% else %}
-            <strong>There are no stations present.</strong>
-        {% endif %}
-    </div>
-    <div id="Partick" style="display:none;">
-        {% if stations %}
-        <ul>
-            {% for station in stations %}
-                {% if station.stringName == "Partick" %}
-                <li>
-                        <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                    </li>
-                <li>Train Times Monday - Saturday:
-                </br>
-                {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                </li>
-                <li>Train Times Sunday:
-                    </br>
-                    {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                    </li>
-                    
-                {% endif %}
-            {% endfor %}
-        </ul>
-        {% else %}
-            <strong>There are no stations present.</strong>
-        {% endif %}
-    </div>
-    <div id="St. George's Cross" style="display:none;">
-        {% if stations %}
-        <ul>
-            {% for station in stations %}
-                {% if station.stringName == "St. George's Cross" %}
-                <li>
-                        <b><a href="{% url 'show_station' station.slug %}">{{ station.stringName }}</a></b> 
-                    </li>
-                <li>Train Times Monday - Saturday:
-                </br>
-                {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-                </li>
-                <li>Train Times Sunday:
-                    </br>
-                    {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-                    </li>
-                    
-                {% endif %}
-            {% endfor %}
-        </ul>
-        {% else %}
-            <strong>There are no stations present.</strong>
-        {% endif %}
-    </div>
-    
+    function mouseOut(y) {
+        pass;
 
-    <img src="{% static "images/subwaymap.png" %}" alt="Subway Map" usemap="#Map">
+    }
 
-    <map name="Map">
-        <area shape="rect" title="Govan" coords="60,510,160,550" alt="Govan" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"  href='govan'>
-        <area shape="rect" title="Ibrox" coords="200,620,280,660" alt="Ibrox" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='ibrox'>
-        <area shape="rect" title="Cessnock" coords="350,640,500,690" alt="Cessnock" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='cessnock'>
-        <area shape="rect" title="Kinning Park" coords="530,640,660,710" alt="Kinning Park" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='kinningpark'>
-        <area shape="rect" title="Shields Road" coords="710,640,820,710" alt="Shields Road" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='shieldsroad'>
-        <area shape="rect" title="West Street" coords="900,620,1000,690" alt="West Street" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='weststreet'>
-        <area shape="rect" title="Bridge Street" coords="1040,500,1130,580" alt="Bridge Street" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='bridgestreet'>
-        <area shape="rect" title="St.Enoch" coords="1070,260,1210,300" alt="St. Enoch" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='stenoch'>
-        <area shape="rect" title="Buchanan Street" coords="1000,100,1150,170" alt="Buchanan Street" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='buchananstreet'>
-        <area shape="rect" title="Cowcaddens" coords="810,40,990,70" alt="Cowcaddens" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='cowcaddens'>
-        <area shape="rect" title="St.George's Cross" coords="610,10,780,80" alt="St. George's Cross" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='stgeorgescross'>
-        <area shape="rect" title="Kelvinbridge" coords="400,10,600,50" alt="Kelvinbridge" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='kelvinbridge'>
-        <area shape="rect" title="Hillhead" coords="220,30,360,80" alt="Hillhead" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='hillhead'>
-        <area shape="rect" title="Kelvinhall" coords="50,110,210,150" alt="Kelvinhall" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='kelvinhall'>
-        <area shape="rect" title="Partick" coords="0,260,110,300" alt="Partick" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)" href='partick'>
-      </map>
+    function hideAllExcept(chosenStation) {
+        var stations = ["Govan", "Ibrox", "Cessnock", "Kinning Park", "Shields Road", "West Street", "Bridge Street", "St. Enoch", "Buchanan Street", "Cowcaddens", "St. George's Cross", "Kelvinbridge", "Hillhead", "Kelvinhall", "Partick"];
+
+        for (i = 0; i < stations.length; i++) {
+            if (stations[i] == chosenStation) {
+                pass;
+            } else {
+
+                var curStation = document.getElementById(stations[i]);
+                curStation.style.display = "none";
+            }
+
+        }
+
+    }
+
+</script>
+
+<div id="Base">
+    <ul>
+        <li>
+            <b>Station</b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            Hover over station to view train times.
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            Hover over station to view train times.
+        </li>
+
+    </ul>
+
+
+
+</div>
+
+<div id="Govan" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Govan" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+        <!-- img src="{% static "images/Govan.jpg" %}" width="300" height=ato alt="Govan" -->
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="Ibrox" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Ibrox" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="Cessnock" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Cessnock" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="Kinning Park" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Kinning Park" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="Shields Road" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Shields Road" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="West Street" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "West Street" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="Bridge Street" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Bridge Street" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="St. Enoch" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "St. Enoch" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="Buchanan Street" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Buchanan Street" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="Cowcaddens" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Cowcaddens" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="Kelvinbridge" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Kelvinbridge" %}
+
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="Hillhead" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Hillhead" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="Kelvinhall" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Kelvinhall" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="Partick" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "Partick" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+<div id="St. George's Cross" style="display:none;">
+    {% if stations %}
+    <ul>
+        {% for station in stations %} {% if station.name == "St. George's Cross" %}
+        <li>
+            <b>
+                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+            </b>
+        </li>
+        <li>Train Times Monday - Saturday:
+            </br>
+            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
+        </li>
+        <li>Train Times Sunday:
+            </br>
+            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
+        </li>
+
+        {% endif %} {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no stations present.</strong>
+    {% endif %}
+</div>
+
+
+<img src="{% static "images/subwaymap.png" %}" alt="Subway Map" usemap="#Map">
+
+<map name="Map">
+    <area shape="rect" title="Govan" coords="60,510,160,550" alt="Govan" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='govan'>
+    <area shape="rect" title="Ibrox" coords="200,620,280,660" alt="Ibrox" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='ibrox'>
+    <area shape="rect" title="Cessnock" coords="350,640,500,690" alt="Cessnock" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='cessnock'>
+    <area shape="rect" title="Kinning Park" coords="530,640,660,710" alt="Kinning Park" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='kinningpark'>
+    <area shape="rect" title="Shields Road" coords="710,640,820,710" alt="Shields Road" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='shieldsroad'>
+    <area shape="rect" title="West Street" coords="900,620,1000,690" alt="West Street" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='weststreet'>
+    <area shape="rect" title="Bridge Street" coords="1040,500,1130,580" alt="Bridge Street" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='bridgestreet'>
+    <area shape="rect" title="St.Enoch" coords="1070,260,1210,300" alt="St. Enoch" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='stenoch'>
+    <area shape="rect" title="Buchanan Street" coords="1000,100,1150,170" alt="Buchanan Street" onmouseover="mouseOver(alt)"
+        onmouseout="mouseOut(alt)" href='buchananstreet'>
+    <area shape="rect" title="Cowcaddens" coords="810,40,990,70" alt="Cowcaddens" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='cowcaddens'>
+    <area shape="rect" title="St.George's Cross" coords="610,10,780,80" alt="St. George's Cross" onmouseover="mouseOver(alt)"
+        onmouseout="mouseOut(alt)" href='stgeorgescross'>
+    <area shape="rect" title="Kelvinbridge" coords="400,10,600,50" alt="Kelvinbridge" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='kelvinbridge'>
+    <area shape="rect" title="Hillhead" coords="220,30,360,80" alt="Hillhead" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='hillhead'>
+    <area shape="rect" title="Kelvinhall" coords="50,110,210,150" alt="Kelvinhall" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='kelvinhall'>
+    <area shape="rect" title="Partick" coords="0,260,110,300" alt="Partick" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
+        href='partick'>
+</map>
 
 {% endblock %}
-
-
-
