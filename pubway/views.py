@@ -2,7 +2,7 @@ from pubway.forms import RegistrationForm, UserEditForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from pubway.models import Station
+from pubway.models import Station, Place
 
 from django.http import HttpResponse, HttpResponseRedirect
 #from django.core.urlresolvers import reverse #no longer supported
@@ -104,7 +104,7 @@ def changepassword(request):
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, 'Your password was successfully updated!')
-            return redirect('change_password')
+            return redirect('index')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
@@ -131,16 +131,23 @@ def show_station(request, station_name_slug):
     context_dict = {}
     try:
         station = Station.objects.get(slug=station_name_slug)
+        places = Place.objects.filter(closeStation=station)
         context_dict['station'] = station
+        context_dict['places'] = places
 
     except Station.DoesNotExist:
         context_dict = {}
 
     return render(request, 'pubway/stationPage.html', context_dict)
 
-def station_preview(request, station_name):
+def show_place(request,place_name_slug):
     context_dict = {}
-    station = Station.objects.get(stringName=station_name)
+    try:
+        place = Place.objects.get(slug=place_name_slug)
+        context_dict['place'] = place
 
-    return(station)
-    
+    except Place.DoesNotExist:
+        context_dict = {}
+
+    return render(request, 'pubway/placePage.html', context_dict)
+

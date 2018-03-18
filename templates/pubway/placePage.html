@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{% extends 'pubway/base.html' %}
+{% load staticfiles %}
+
+<html>
+<head lang="en">
+    {% block head_title %}
+        {{ place.name }}
+    {% endblock %}
+    {% block style %}
+    {% endblock %}
+</head>
+
+<body>
+    {% block content %}
+        {% if place %}
+            <h1>{{ place.name }}</h1>
+        {% else %}
+            <h1>Station does not exist!</h1>
+        {% endif %}
+        Places content to come here </br>
+    {% endblock %}
+</body>
+
+</html>

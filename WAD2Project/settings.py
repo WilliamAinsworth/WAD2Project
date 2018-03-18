@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     # third party apps
     'crispy_forms',
     'registration',
-    'imagekit',
+    'avatar',
     # Our app
     'pubway',
 ]
@@ -135,3 +135,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
+
+AVATAR_PROVIDERS = ('avatar.providers.PrimaryAvatarProvider',
+                    'avatar.providers.DefaultAvatarProvider',)
+AVATAR_DEFAULT_URL = 'images/avatardefault.jpeg'
+AVATAR_CHANGE_TEMPLATE = TEMPLATE_DIR + '/pubway/accounts/edit_avatar.html'

@@ -6,7 +6,7 @@
 <html>
 <head lang="en">
     {% block head_title %}
-        {{ station.stringName }}
+        {{ station.name }}
     {% endblock %}
     {% block style %}
         /* Always set the map height explicitly to define the size of the div
@@ -20,7 +20,7 @@
 <body>
     {% block content %}
         {% if station %}
-            <h1>{{ station.stringName }}</h1>
+            <h1>{{ station.name }}</h1>
             <div id="stationTimes">
                 Train times: <br>
                 Monday - Saturday: {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }} <br>
@@ -28,8 +28,16 @@
             </div>
             <p id="addPlaceButton">
                 <button type="button" onclick="addPlace()">Add a place!</button>
-                <script src="/static/js/stationPageScript.js"></script>
             </p>
+
+            <div id="places_list">
+            <u1>
+            {% for place in places %}
+                    <li>{{ place.name }}</li>
+            {% endfor %}
+            </u1>
+            </div>
+
             <div id="map" style="width:60%;height:400px"></div>
 
             <script>
@@ -42,15 +50,14 @@
                 marker.setMap(map);
 
                 google.maps.event.addListener(marker,'click',function() {
-                    var infowindow = new google.maps.InfoWindow({content:"{{ station.stringName }} Station!"});
+                    var infowindow = new google.maps.InfoWindow({content:"{{ station.name }} Station!"});
                     infowindow.open(map,marker);
                     });
 
                 infowindow.open(map,marker);
             }
             </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN1R6rdaYW__YOLaw8uHv5RxssqRl9Vbg&callback=myMap"
-            async defer></script>
+
         {% else %}
             <h1>Station does not exist!</h1>
         {% endif %}
