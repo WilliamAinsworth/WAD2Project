@@ -13,6 +13,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
+
+
 #
 # User registration
 #
@@ -121,6 +123,7 @@ def new_subcrawl(request):
 def index(request):
     station_list = Station.objects.all()
     context_dict = {"stations": station_list}
+
     response = render(request, 'pubway/index.html', context_dict)
     return response
 
@@ -135,7 +138,9 @@ def show_station(request, station_name_slug):
 
     return render(request, 'pubway/stationPage.html', context_dict)
 
-"""def station_preview(request, station_name):
+def station_preview(request, station_name):
+    context_dict = {}
+    station = Station.objects.get(stringName=station_name)
 
-    )
-    """
+    return(station)
+    
