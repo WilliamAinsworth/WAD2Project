@@ -114,7 +114,7 @@ def changepassword(request):
 #
 # Subcrawl
 #
-#@login_required
+@login_required
 def new_subcrawl(request):
     friends = UserProfile.objects.all() #for now, to be changed
     form = SubcrawlForm()

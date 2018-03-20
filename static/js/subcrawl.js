@@ -16,7 +16,7 @@ $( function() {
 
     //$( "#datepicker" ).datepicker.formatDate( "dd-mm-yy", $( this ).val() );
 } );
-
+alert("External js is working!");
 $( function() {
     $( "input" ).checkboxradio();
 } );
