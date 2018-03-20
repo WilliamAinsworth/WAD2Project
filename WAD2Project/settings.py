@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'registration',
     'avatar',
-    'jquery',
-    'jquery_ui',
     # Our app
     'pubway',
 ]
