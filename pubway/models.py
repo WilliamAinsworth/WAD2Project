@@ -30,13 +30,13 @@ class UserProfile(models.Model):
 # Subcrawls
 class Subcrawl(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=64, unique=True)
+    name = models.CharField(max_length=128, unique=True)
     date_time = models.DateTimeField()
     is_public = models.BooleanField()
     loc = models.ForeignKey('Place', null=True, on_delete=models.SET_NULL, related_name='subcrawl_loc')
     places = models.ManyToManyField('Place')
     organiser = models.ForeignKey('UserProfile', null=True, on_delete=models.SET_NULL)
-
+    firstSt = models.ForeignKey('Station', null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.name
 

@@ -1,8 +1,8 @@
-from pubway.forms import RegistrationForm, UserEditForm
+from pubway.forms import RegistrationForm, UserEditForm, SubcrawlForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from pubway.models import Station, Place
+from pubway.models import Station, UserProfile, Place
 
 from django.http import HttpResponse, HttpResponseRedirect
 #from django.core.urlresolvers import reverse #no longer supported
@@ -11,8 +11,6 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
-
 
 
 #
@@ -112,18 +110,24 @@ def changepassword(request):
     return render(request, 'pubway/accounts/password_change_form.html', {
         'form': form
     })
+
 #
 # Subcrawl
 #
-
+#@login_required
 def new_subcrawl(request):
-    response = render(request, 'pubway/base.html', context={})
+    friends = UserProfile.objects.all() #for now, to be changed
+    form = SubcrawlForm()
+    user = request.user
+    stations = Station.objects.all()
+    context_dict = {"friends": friends, "form":form, "user":user, "stations":stations}
+    response = render(request, 'pubway/new_subcrawl.html', context=context_dict)
     return response
+
 
 def index(request):
     station_list = Station.objects.all()
     context_dict = {"stations": station_list}
-
     response = render(request, 'pubway/index.html', context_dict)
     return response
 

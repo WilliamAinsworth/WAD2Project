@@ -8,7 +8,10 @@ from pubway.models import Place
 from pubway.models import UserProfile
 from imagekit.forms import ProcessedImageField
 
-#User Management
+from pubway.models import Subcrawl
+
+
+# User Management
 
 class RegistrationForm(UserCreationForm):
     class Meta:
@@ -19,10 +22,11 @@ class RegistrationForm(UserCreationForm):
         if not commit:
             raise NotImplementedError("Can't create User and UserProfile without database save")
         user = super(RegistrationForm, self).save(commit=True)
-        #UserProfile creation
+        # UserProfile creation
         userprofile = UserProfile(user=user)
         userprofile.save()
         return user
+
 
 class UserEditForm(UserChangeForm):
     class Meta:
@@ -30,11 +34,23 @@ class UserEditForm(UserChangeForm):
         fields = ('first_name', 'last_name', 'username', 'email', 'password',)
 
 
-
 class PlaceForm(forms.ModelForm):
-    name = forms.CharField(max_length=128, help_text="Name of the place (required):",required=True)
+    name = forms.CharField(max_length=128, help_text="Name of the place (required):", required=True)
 
     class Meta:
         model = Place
         exclude = ()
 
+
+class SubcrawlForm(forms.ModelForm):
+    name = forms.CharField(max_length=128,
+                            help_text="Please enter the title of the subcrawl.")
+    is_public = forms.BooleanField()
+    places = forms.MultiValueField()
+
+    class Meta:
+        model = Subcrawl
+        exclude = ('id','loc','organiser')
+        widgets = {
+            'date': forms.DateInput(attrs={'class': 'datepicker'})
+        }
