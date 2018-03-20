@@ -30,6 +30,7 @@ class Subcrawl(models.Model):
     places = models.ManyToManyField('Place')
     organiser = models.ForeignKey('UserProfile', null=True, on_delete=models.SET_NULL)
     firstSt = models.ForeignKey('Station', null=True, on_delete=models.SET_NULL)
+    
     def __str__(self):
         return self.name
 
