@@ -2,7 +2,6 @@ from crispy_forms.helper import FormHelper
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from pilkit.processors import ResizeToFill
 
 from pubway.models import Place
 from pubway.models import UserProfile

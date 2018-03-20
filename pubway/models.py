@@ -6,7 +6,6 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from pilkit.processors import ResizeToFill
 from datetime import datetime
 
 # Authentication models
