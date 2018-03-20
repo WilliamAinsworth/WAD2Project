@@ -34,7 +34,7 @@ def populate():
     }
 
     for station,station_data in stations.items():
-        s = add_station(station,station_data["firstTrainMonSat"],station_data["lastTrainMonSat"],station_data["firstTrainSun"],station_data["lastTrainSun"],station_data["latitude"],station_data["longitude"])
+        s = add_station(station,station_data["firstTrainMonSat"],station_data["lastTrainMonSat"],station_data["firstTrainSun"],station_data["lastTrainSun"],station_data["latitude"],station_data["longitude"],station_data["mapCoords"])
 
     print("Populating subway stations...")
     for s in Station.objects.all():
@@ -47,7 +47,7 @@ def populate():
     for p in Place.objects.all():
             print("- {0} near {1}".format(str(p), str(p.closeStation)))
 
-def add_station(name,firstTrainMonSat,lastTrainMonSat,firstTrainSun,lastTrainSun,latitude,longitude):
+def add_station(name,firstTrainMonSat,lastTrainMonSat,firstTrainSun,lastTrainSun,latitude,longitude,mapCoords):
     s = Station.objects.get_or_create(name=name)[0]
     s.firstTrainMonSat=firstTrainMonSat
     s.lastTrainMonSat=lastTrainMonSat
@@ -55,6 +55,7 @@ def add_station(name,firstTrainMonSat,lastTrainMonSat,firstTrainSun,lastTrainSun
     s.lastTrainSun=lastTrainSun
     s.latitude=latitude
     s.longitude=longitude
+    s.mapCoords=mapCoords
     s.save()
     return s
 

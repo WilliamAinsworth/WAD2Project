@@ -12,57 +12,14 @@
 <script>
     function mouseOver(hoveredStation) {
 
-
-        document.getElementById("Govan").style.display = "none";
-        document.getElementById("Ibrox").style.display = "none";
-        document.getElementById("Cessnock").style.display = "none";
-        document.getElementById("Kinning Park").style.display = "none";
-        document.getElementById("Shields Road").style.display = "none";
-        document.getElementById("West Street").style.display = "none";
-        document.getElementById("Bridge Street").style.display = "none";
-        document.getElementById("St. Enoch").style.display = "none";
-        document.getElementById("Buchanan Street").style.display = "none";
-        document.getElementById("Cowcaddens").style.display = "none";
-        document.getElementById("Kelvinbridge").style.display = "none";
-        document.getElementById("Hillhead").style.display = "none";
-        document.getElementById("Kelvinhall").style.display = "none";
-        document.getElementById("Partick").style.display = "none";
-        document.getElementById("St. George's Cross").style.display = "none";
-        document.getElementById("Base").style.display = "none";
-
-
-        var x = document.getElementById(hoveredStation);
-        
-        x.style.display = "block";
-
-        /*if (x.style.display === "none") {
-            x.style.display = "block";
-        }*/
-
-
-        //hideAllExcept(hoveredStation);
-
-    }
-
-    function mouseOut(y) {
-        pass;
-
-    }
-
-    function hideAllExcept(chosenStation) {
-        var stations = ["Govan", "Ibrox", "Cessnock", "Kinning Park", "Shields Road", "West Street", "Bridge Street", "St. Enoch", "Buchanan Street", "Cowcaddens", "St. George's Cross", "Kelvinbridge", "Hillhead", "Kelvinhall", "Partick"];
+        var stations = ["Base","Govan", "Ibrox", "Cessnock", "Kinning Park", "Shields Road", "West Street", "Bridge Street", "St. Enoch", "Buchanan Street", "Cowcaddens", "St. George's Cross", "Kelvinbridge", "Hillhead", "Kelvinhall", "Partick"];
 
         for (i = 0; i < stations.length; i++) {
-            if (stations[i] == chosenStation) {
-                pass;
-            } else {
-
-                var curStation = document.getElementById(stations[i]);
-                curStation.style.display = "none";
-            }
-
+            document.getElementById(stations[i]).style.display = "none";
         }
-
+        //show hovered station div
+        var x = document.getElementById(hoveredStation);
+        x.style.display = "block";
     }
 
 </script>
@@ -79,7 +36,6 @@
         <li>Train Times Sunday:
             </br>
             Hover over station to view train times.
-        </li>
 
     </ul>
 
@@ -429,7 +385,9 @@
 <div id="St. George's Cross" style="display:none;">
     {% if stations %}
     <ul>
-        {% for station in stations %} {% if station.name == "St. George's Cross" %}
+        {% for station in stations %}
+
+        {% if station.name == "St. George's Cross" %}
         <li>
             <b>
                 <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
@@ -479,11 +437,10 @@
     
         {% for station in stations %}
 
-        <area shape="rect"  coords="{{station.mapCoords}}" alt="{{station.name}}" onmouseover="mouseOver(alt)" 
+        <area shape="rect" title="{{station.name}}" coords="{{station.mapCoords}}" alt="{{station.name}}" onmouseover="mouseOver(alt)" 
         href='{% url "show_station" station.slug %}'>
     
         {% endfor %}
 </map>
-
 
 {% endblock %}
