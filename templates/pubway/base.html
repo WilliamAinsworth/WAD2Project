@@ -51,12 +51,11 @@
     {% endblock %}
     -->
     <div class="container">
+    {% include "pubway/elements/javascript.html" %}
         {% block content %} {% endblock %}
     </div> <!-- /container -->
 
 </div>
 {% include 'pubway/elements/footer.html' %}
-
-{% include "pubway/elements/javascript.html" %}
 </body>
 </html>
