@@ -450,7 +450,6 @@
     <strong>There are no stations present.</strong>
     {% endif %}
 </div>
-
 <div>
     
     {% if places %}
@@ -474,37 +473,16 @@
 
 <img src="{% static "images/subwaymap.png" %}" alt="Subway Map" usemap="#Map">
 
+
+
 <map name="Map">
-    <area shape="rect" title="Govan" coords="60,510,160,550" alt="Govan" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='govan'>
-    <area shape="rect" title="Ibrox" coords="200,620,280,660" alt="Ibrox" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='ibrox'>
-    <area shape="rect" title="Cessnock" coords="350,640,500,690" alt="Cessnock" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='cessnock'>
-    <area shape="rect" title="Kinning Park" coords="530,640,660,710" alt="Kinning Park" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='kinningpark'>
-    <area shape="rect" title="Shields Road" coords="710,640,820,710" alt="Shields Road" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='shieldsroad'>
-    <area shape="rect" title="West Street" coords="900,620,1000,690" alt="West Street" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='weststreet'>
-    <area shape="rect" title="Bridge Street" coords="1040,500,1130,580" alt="Bridge Street" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='bridgestreet'>
-    <area shape="rect" title="St.Enoch" coords="1070,260,1210,300" alt="St. Enoch" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='stenoch'>
-    <area shape="rect" title="Buchanan Street" coords="1000,100,1150,170" alt="Buchanan Street" onmouseover="mouseOver(alt)"
-        onmouseout="mouseOut(alt)" href='buchananstreet'>
-    <area shape="rect" title="Cowcaddens" coords="810,40,990,70" alt="Cowcaddens" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='cowcaddens'>
-    <area shape="rect" title="St.George's Cross" coords="610,10,780,80" alt="St. George's Cross" onmouseover="mouseOver(alt)"
-        onmouseout="mouseOut(alt)" href='stgeorgescross'>
-    <area shape="rect" title="Kelvinbridge" coords="400,10,600,50" alt="Kelvinbridge" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='kelvinbridge'>
-    <area shape="rect" title="Hillhead" coords="220,30,360,80" alt="Hillhead" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='hillhead'>
-    <area shape="rect" title="Kelvinhall" coords="50,110,210,150" alt="Kelvinhall" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='kelvinhall'>
-    <area shape="rect" title="Partick" coords="0,260,110,300" alt="Partick" onmouseover="mouseOver(alt)" onmouseout="mouseOut(alt)"
-        href='partick'>
+    
+        {% for station in stations %}
+
+        <area shape="rect"  coords="{{station.mapCoords}}" alt="{{station.name}}" onmouseover="mouseOver(alt)" 
+        href='{% url "show_station" station.slug %}'>
+    
+        {% endfor %}
 </map>
 
 

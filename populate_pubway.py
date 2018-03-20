@@ -9,21 +9,21 @@ from datetime import time
 def populate():
 
     stations = {
-        "Hillhead": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.875236, "longitude":-4.293352},
-        "Kelvinbridge": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.874307, "longitude":-4.279574},
-        "St. George's Cross": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.871200, "longitude":-4.269180},
-        "Cowcaddens": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.869111, "longitude":-4.259755},
-        "Buchanan Street": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.862401, "longitude":-4.253383},
-        "St. Enoch": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.857554, "longitude":-4.255175},
-        "Bridge Street": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.852080, "longitude":-4.258563},
-        "West Street": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.849534, "longitude":-4.265919},
-        "Shields Road": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.850000, "longitude":-4.275344},
-        "Kinning Park": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.850505, "longitude":-4.287747},
-        "Cessnock": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.852052, "longitude":-4.294296},
-        "Ibrox": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.854610, "longitude":-4.304480},
-        "Govan": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.662189, "longitude":-4.310560},
-        "Partick": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.869841, "longitude":-4.308683},
-        "Kelvinhall": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.870939, "longitude":-4.299956}
+        "Hillhead": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.875236, "longitude":-4.293352, "mapCoords":"220,30,360,80" },
+        "Kelvinbridge": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.874307, "longitude":-4.279574, "mapCoords":"400,10,600,50"},
+        "St. George's Cross": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.871200, "longitude":-4.269180, "mapCoords":"610,10,780,80"},
+        "Cowcaddens": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.869111, "longitude":-4.259755, "mapCoords":"810,40,990,70"},
+        "Buchanan Street": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.862401, "longitude":-4.253383, "mapCoords":"1000,100,1150,170"},
+        "St. Enoch": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.857554, "longitude":-4.255175, "mapCoords":"1070,260,1210,300"},
+        "Bridge Street": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.852080, "longitude":-4.258563, "mapCoords":"1040,500,1130,580"},
+        "West Street": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.849534, "longitude":-4.265919, "mapCoords":"900,620,1000,690"},
+        "Shields Road": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.850000, "longitude":-4.275344, "mapCoords":"710,640,820,710"},
+        "Kinning Park": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.850505, "longitude":-4.287747, "mapCoords":"530,640,660,710"},
+        "Cessnock": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.852052, "longitude":-4.294296, "mapCoords":"350,640,500,690"},
+        "Ibrox": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.854610, "longitude":-4.304480, "mapCoords":"200,620,280,660"},
+        "Govan": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.662189, "longitude":-4.310560, "mapCoords":"60,510,160,550"},
+        "Partick": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.869841, "longitude":-4.308683, "mapCoords":"0,260,110,300"},
+        "Kelvinhall": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.870939, "longitude":-4.299956, "mapCoords":"50,110,210,150"}
     }
     places = {
         "QMU": {"postcode":"G12 8QN", "address":"22 University Gardens, Glasgow", "website":"qmunion.org.uk", "closeStation":Station(name='Hillhead'), "type":1},
