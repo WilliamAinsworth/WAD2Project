@@ -6,7 +6,6 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from imagekit.models import ImageSpecField, ProcessedImageField
 from pilkit.processors import ResizeToFill
 from datetime import datetime
 
@@ -20,11 +19,6 @@ class UserProfile(models.Model):
     # The additional attributes we wish to include.
     no_reviews = models.IntegerField(default=0)
     no_likes = models.IntegerField(default=0)
-    picture = ProcessedImageField(upload_to='profiles',
-                                           processors=[ResizeToFill(100, 50)],
-                                           format='JPEG',
-                                           options={'quality': 60},
-                                           default ='default.jpeg')
     subcrawls = models.ManyToManyField('Subcrawl')
 
 # Subcrawls

@@ -6,7 +6,6 @@ from pilkit.processors import ResizeToFill
 
 from pubway.models import Place
 from pubway.models import UserProfile
-from imagekit.forms import ProcessedImageField
 
 from pubway.models import Subcrawl
 
