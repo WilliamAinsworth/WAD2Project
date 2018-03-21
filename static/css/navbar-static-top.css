@@ -1,19 +1,22 @@
 .navbar-static-top {
   margin-bottom: 19px;
-  background-color: #0E3D14;
-  border-color: #1A5F23;
+  background-color: #2E2E2E;
+  border-color: #212121;
 }
 
-.navbar-default .navbar-brand {
-  color: #FFF;
+.nav.navbar-nav li a {
+    color: #FFF;
+}
+.navbar-default .navbar-nav .open .dropdown-menu li a{
+    color: #2E2E2E
 }
 
 .navbar-default .navbar-brand:hover {
-  color: #777;
+  color: #FFF;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
-  color: #999;
+  color: #FFF;
 }
 
 .navbar-default .navbar-toggle {

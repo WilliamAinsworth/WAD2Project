@@ -11,10 +11,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/mvp_landing_logo.png' %}"/></a>
+            <a class="navbar-brand" href="{% url 'index' %}"><img style="max-height:45px; margin-top: -13px;" src="{% static 'images/mvp_landing_logo.png' %}"/></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+
+            <ul class="nav navbar-nav navbar-left">
                 <li><a href="{% url 'index' %}">Home</a></li>
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'new_subcrawl' %}">Organise a new Subcrawl</a></li>
