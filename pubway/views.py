@@ -1,8 +1,9 @@
-from pubway.forms import RegistrationForm, UserEditForm, SubcrawlForm
+from pubway.forms import RegistrationForm, UserEditForm, SubcrawlForm, PlaceForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from pubway.models import Station, UserProfile, Place
+from django.views.generic import FormView
 
 from django.http import HttpResponse, HttpResponseRedirect
 #from django.core.urlresolvers import reverse #no longer supported
@@ -163,4 +164,3 @@ def show_place(request,place_name_slug):
         context_dict = {}
 
     return render(request, 'pubway/placePage.html', context_dict)
-

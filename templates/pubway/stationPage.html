@@ -26,9 +26,6 @@
                 Monday - Saturday: {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }} <br>
                 Sunday: {{ station.firstTrainSun }} - {{ station.lastTrainSun }} <br>
             </div>
-            <p id="addPlaceButton">
-                <button type="button" onclick="addPlace()">Add a place!</button>
-            </p>
 
             <div id="places_list">
             <u1>
@@ -37,6 +34,12 @@
             {% endfor %}
             </u1>
             </div>
+
+            <p id="addPlaceButton">
+                <button type="button" onclick="addPlace()">Add a place!</button>
+            </p>
+            <form
+
 
             <div id="map" style="width:60%;height:400px"></div>
 

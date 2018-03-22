@@ -64,11 +64,12 @@ class Place(models.Model):
     address = models.CharField(max_length=128,default='')
     website = models.URLField(default='')
     closeStation = models.ForeignKey(Station,default='',on_delete=models.SET_NULL, null=True) #many-to-one mapping
+    likes = models.IntegerField(default=0)
 
-    PUB_CHOICE = 1
-    RESTAURANT_CHOICE = 2
-    NIGHTCLUB_CHOICE = 3
-    OTHER_CHOICE = 4
+    PUB_CHOICE = 0
+    RESTAURANT_CHOICE = 1
+    NIGHTCLUB_CHOICE = 2
+    OTHER_CHOICE = 3
 
     PLACE_CHOICES = (
         (PUB_CHOICE, "Pub"),

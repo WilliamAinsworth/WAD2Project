@@ -33,11 +33,15 @@ class UserEditForm(UserChangeForm):
 
 
 class PlaceForm(forms.ModelForm):
-    name = forms.CharField(max_length=128, help_text="Name of the place (required):", required=True)
+    name = forms.CharField(max_length=128, required=True)
+    postcode = forms.CharField(max_length=7)
+    address = forms.CharField(max_length=128)
+    website = forms.URLField()
+    type = forms.ChoiceField(choices=Place.PLACE_CHOICES, initial=Place.PUB_CHOICE)
 
     class Meta:
         model = Place
-        exclude = ()
+        exclude = ('id','closeStation','likes','slug',)
 
 
 class SubcrawlForm(forms.ModelForm):
