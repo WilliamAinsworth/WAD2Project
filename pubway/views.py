@@ -203,3 +203,31 @@ def show_place(request,place_name_slug):
         context_dict = {}
 
     return render(request, 'pubway/placePage.html', context_dict)
+
+@login_required
+def add_place(request,station_name_slug):
+
+    try:
+        station = Station.objects.get(slug=station_name_slug)
+    except Station.DoesNotExist:
+        station = None
+
+    place_form = PlaceForm()
+
+    if request.method == 'POST':
+        place_form = PlaceForm(request.POST)
+
+        if place_form.is_valid():
+            if station:
+                place = place_form.save(commit=False)
+                place.closeStation = station
+                place.likes = 0
+                place.save()
+                return show_place(request, place.slug)
+
+        else:
+            print(place_form.errors)
+
+    context_dict = {'form': place_form, 'station': station}
+    reponse = render(request,'pubway/add_place.html',context_dict)
+    return reponse
