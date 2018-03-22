@@ -1,0 +1,5 @@
+{% for plc in top_plcs %}
+        <li>
+            <a href="{% url 'show_place' plc.slug %}">{{ plc.name }}</a>
+        </li>
+{% endfor %}

@@ -7,3 +7,10 @@ register = template.Library()
 def get_close_places_list(stn=None):
    return {'plcs': Place.objects.filter(closeStation=stn)}
 #To get places closest to given station use: {% get_close_places_list 'Hillhead' %}
+
+@register.inclusion_tag('pubway/top_plcs.html')
+def get_top_places_list(stn=None):
+    stationPlaces = Place.objects.filter(closeStation=stn)
+    top_places = stationPlaces.order_by('-likes')[:5]
+
+    return { 'top_plcs' : top_places }
