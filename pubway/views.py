@@ -142,9 +142,10 @@ def show_subcrawl(request, subcrawl_name_slug):
     #in progress
     try:
         subcrawl = Subcrawl.objects.get(sub_slug=subcrawl_name_slug)
-        return HttpResponse("Succesfully created a subcrawl %s." %subcrawl.sub_name)
     except:
-        return HttpResponse("This subcrawl doen't exist.")
+        subcrawl = None
+    context_dict = {"subcrawl": subcrawl, "slug": subcrawl_name_slug}
+    return render(request, 'pubway/show_subcrawl.html', context=context_dict)
 
 @login_required
 def add_place_to_sub(request):

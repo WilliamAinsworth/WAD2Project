@@ -1,16 +1,9 @@
 from django import template
-from pubway.models import Station
-from django.template.defaultfilters import stringfilter
+from pubway.models import Place
+
 register = template.Library()
 
-@register.filter
-@stringfilter
-
-def get_station(inName=None):
-    stations_list = Station.objects.all()
-
-    for station in stations_list:
-        if station.name == inName:
-            return station
- 
-
+@register.inclusion_tag('pubway/plcs.html')
+def get_close_places_list(stn=None):
+   return {'plcs': Place.objects.filter(closeStation=stn)}
+#To get places closest to given station use: {% get_close_places_list 'Hillhead' %}
