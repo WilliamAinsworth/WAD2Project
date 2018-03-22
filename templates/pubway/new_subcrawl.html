@@ -1,5 +1,6 @@
 {% extends 'pubway/base.html' %}
 {% load staticfiles %}
+{% load pubway_template_tags %}
 {% block head_title %}
     Subcrawl - Organise
 {% endblock %}
@@ -24,6 +25,9 @@
         <p>Time: {{form.sub_time}}</p>
         <p>Make accessible to anyone with a link: {{form.is_public}}</p>
         <p>First Station: {{form.first_st}}</p>
+        {% for station in stations %}
+            <p>Add place at station {{station}}: {% get_close_places_list station %}</p>
+        {% endfor %}
         <!--<p>
         <p>Timepicker: <input type="text" id="timepicker" value=""/> </p>
             First Station:
