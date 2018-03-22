@@ -15,6 +15,7 @@
         height: 100%;
         }
     {% endblock %}
+
 </head>
 
 <body>
@@ -29,7 +30,7 @@
 
             <div id="places_list">
             <u1>
-            {% for place in places %}
+            {% for place in top_places %}
                     <li>{{ place.name }}</li>
             {% endfor %}
             </u1>
@@ -39,7 +40,7 @@
                 <button type="button" onclick="addPlace()">Add a place!</button>
             </p>
 
-            <br id="addPlaceForm">
+            <form id="addPlaceForm">
                 <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class = "mdl-textfield__input" type = "text" maxlength="128" id = "name">
                     <label class = "mdl-textfield__label" for = "name">Name...</label>
@@ -62,13 +63,15 @@
                 <br/>
 
                 <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class = "mdl-textfield__input" type = "url" id = "website">
-                    <label class = "mdl-textfield__label" for = "postcode">Website...</label>
+                    <input class = "mdl-textfield__input" type = "text" maxlength="128" id = "address">
+                    <label class = "mdl-textfield__label" for = "address">Address...</label>
                     <span class = "mdl-textfield__error"></span>
                   </div>
                 <br/>
-            </form>
 
+            </form>
+            <link rel = "stylesheet" href = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+            <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
 
             <div id="map" style="width:60%;height:400px"></div>
 

@@ -181,7 +181,7 @@ def show_station(request, station_name_slug):
         station = Station.objects.get(slug=station_name_slug)
 
         stationPlaces = Place.objects.filter(closeStation=station)
-        top_places = stationPlaces.objects.order_by('-likes')[:5]
+        top_places = stationPlaces.order_by('-likes')[:5]
 
         context_dict['station'] = station
         context_dict['places'] = stationPlaces

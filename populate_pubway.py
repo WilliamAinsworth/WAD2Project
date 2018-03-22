@@ -27,7 +27,7 @@ def populate():
     }
     places = {
         "QMU": {"postcode":"G12 8QN", "address":"22 University Gardens, Glasgow", "website":"qmunion.org.uk", "closeStation":Station(name='Hillhead'), "likes":72,"type":1},
-        "GUU": {"postcode":"G12 8LX", "address":"32 University Avenue, Glasgow", "website":"guu.co.uk", "closeStation":Station(name='Kelvinbridge'), "likes": 120,"type":1},
+        "GUU": {"postcode":"G12 8LX", "address":"32 University Avenue, Glasgow", "website":"guu.co.uk", "closeStation":Station(name='Kelvinbridge'), "likes": 12,"type":1},
         "Bank Street": {"postcode":"G12 8LZ", "address":"52 Bank St, Glasgow G12 8LZ", "website":"bankst.co.uk", "closeStation":Station(name='Kelvinbridge'), "likes":35,"type":1},
         "The Sparkle Horse": {"postcode":"G11 5QR", "address":"Dowanhill St, Glasgow", "website":"thesparklehorse.com", "closeStation": Station(name='Kelvinhall'), "likes":22,"type":2},
         "Pizza Crolla": {"postcode":"G1 2LL", "address":"156 Buchanan St, Glasgow", "website":"", "closeStation":Station(name='Buchanan Street'), "likes":5, "type":2},
