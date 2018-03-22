@@ -145,9 +145,13 @@ def show_station(request, station_name_slug):
     context_dict = {}
     try:
         station = Station.objects.get(slug=station_name_slug)
-        places = Place.objects.filter(closeStation=station)
+
+        stationPlaces = Place.objects.filter(closeStation=station)
+        top_places = stationPlaces.objects.order_by('-likes')[:5]
+
         context_dict['station'] = station
-        context_dict['places'] = places
+        context_dict['places'] = stationPlaces
+        context_dict['top_places'] = top_places
 
     except Station.DoesNotExist:
         context_dict = {}
