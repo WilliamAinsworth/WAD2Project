@@ -38,7 +38,26 @@
             <p id="addPlaceButton">
                 <button type="button" onclick="addPlace()">Add a place!</button>
             </p>
-            <form
+
+            <form id="addPlaceForm">
+                <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class = "mdl-textfield__input" type = "text" maxlength="128" id = "name">
+                    <label class = "mdl-textfield__label" for = "name">Name...</label>
+                    <span class = "mdl-textfield__error"></span>
+                  </div>
+
+                <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class = "mdl-textfield__input" type = "text" maxlength="7" id = "postcode">
+                    <label class = "mdl-textfield__label" for = "postcode">Postcode...</label>
+                    <span class = "mdl-textfield__error"></span>
+                  </div>
+
+                <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class = "mdl-textfield__input" type = "text" maxlength="128" id = "address">
+                    <label class = "mdl-textfield__label" for = "address">Address...</label>
+                    <span class = "mdl-textfield__error"></span>
+                  </div>
+            </form>
 
 
             <div id="map" style="width:60%;height:400px"></div>

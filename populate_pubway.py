@@ -26,11 +26,11 @@ def populate():
         "Kelvinhall": {"firstTrainMonSat": time(6, 30), "lastTrainMonSat": time(23, 30), "firstTrainSun": time(10, 00), "lastTrainSun": time(17, 30),"latitude":55.870939, "longitude":-4.299956, "mapCoords":"50,110,210,150"}
     }
     places = {
-        "QMU": {"postcode":"G12 8QN", "address":"22 University Gardens, Glasgow", "website":"qmunion.org.uk", "closeStation":Station(name='Hillhead'), "type":1},
-        "GUU": {"postcode":"G12 8LX", "address":"32 University Avenue, Glasgow", "website":"guu.co.uk", "closeStation":Station(name='Kelvinbridge'), "type":1},
-        "Bank Street": {"postcode":"G12 8LZ", "address":"52 Bank St, Glasgow G12 8LZ", "website":"bankst.co.uk", "closeStation":Station(name='Kelvinbridge'), "type":1},
-        "The Sparkle Horse": {"postcode":"G11 5QR", "address":"Dowanhill St, Glasgow", "website":"thesparklehorse.com", "closeStation": Station(name='Kelvinhall'), "type":2},
-        "Pizza Crolla": {"postcode":"G1 2LL", "address":"156 Buchanan St, Glasgow", "website":"", "closeStation":Station(name='Buchanan Street'), "type":2},
+        "QMU": {"postcode":"G12 8QN", "address":"22 University Gardens, Glasgow", "website":"qmunion.org.uk", "closeStation":Station(name='Hillhead'), "likes":72,"type":1},
+        "GUU": {"postcode":"G12 8LX", "address":"32 University Avenue, Glasgow", "website":"guu.co.uk", "closeStation":Station(name='Kelvinbridge'), "likes": 120,"type":1},
+        "Bank Street": {"postcode":"G12 8LZ", "address":"52 Bank St, Glasgow G12 8LZ", "website":"bankst.co.uk", "closeStation":Station(name='Kelvinbridge'), "likes":35,"type":1},
+        "The Sparkle Horse": {"postcode":"G11 5QR", "address":"Dowanhill St, Glasgow", "website":"thesparklehorse.com", "closeStation": Station(name='Kelvinhall'), "likes":22,"type":2},
+        "Pizza Crolla": {"postcode":"G1 2LL", "address":"156 Buchanan St, Glasgow", "website":"", "closeStation":Station(name='Buchanan Street'), "likes":5, "type":2},
     }
 
     for station,station_data in stations.items():
@@ -41,7 +41,7 @@ def populate():
             print("- {0}".format(str(s)))
 
     for place,place_data in places.items():
-        p = add_place(place,place_data["postcode"],place_data["address"],place_data["website"],place_data["closeStation"],place_data["type"])
+        p = add_place(place,place_data["postcode"],place_data["address"],place_data["website"],place_data["closeStation"],place_data["likes"],place_data["type"])
 
     print("Populating places ...")
     for p in Place.objects.all():
@@ -59,12 +59,13 @@ def add_station(name,firstTrainMonSat,lastTrainMonSat,firstTrainSun,lastTrainSun
     s.save()
     return s
 
-def add_place(name,postcode,address,website,closeStation,type):
+def add_place(name,postcode,address,website,closeStation,likes,type):
     p = Place.objects.get_or_create(name=name)[0]
     p.postcode = postcode
     p.address = address
     p.website = website
     p.closeStation = closeStation
+    p.likes=likes
     p.type = type
     p.save()
     return p
