@@ -6,7 +6,8 @@ from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from pubway.models import Place
 from pubway.models import UserProfile
 
-from pubway.models import Subcrawl
+from pubway.models import Subcrawl, Station
+from WAD2Project import settings
 
 
 # User Management
@@ -43,16 +44,15 @@ class PlaceForm(forms.ModelForm):
         model = Place
         exclude = ('id','closeStation','likes','slug',)
 
-
 class SubcrawlForm(forms.ModelForm):
-    name = forms.CharField(max_length=128,
+    sub_name = forms.CharField(max_length=128,
                             help_text="Please enter the title of the subcrawl.")
-    is_public = forms.BooleanField()
-    places = forms.MultiValueField()
+    sub_date = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS)
+    sub_time = forms.TimeField(widget=forms.TimeInput(attrs={'class':'timepicker'}))
+    is_public = forms.BooleanField(initial=True)
+    first_st = forms.ModelChoiceField(queryset=Station.objects.all())
+    #sub_places = forms.MultiValueField()
 
     class Meta:
         model = Subcrawl
-        exclude = ('id','loc','organiser')
-        widgets = {
-            'date': forms.DateInput(attrs={'class': 'datepicker'})
-        }
+        fields = ('sub_name', 'sub_date', 'is_public','sub_time', 'first_st')

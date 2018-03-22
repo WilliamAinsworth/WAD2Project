@@ -2,7 +2,7 @@ from pubway.forms import RegistrationForm, UserEditForm, SubcrawlForm, PlaceForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from pubway.models import Station, UserProfile, Place
+from pubway.models import Station, UserProfile, Place, Subcrawl
 from django.views.generic import FormView
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -118,12 +118,46 @@ def changepassword(request):
 @login_required
 def new_subcrawl(request):
     friends = UserProfile.objects.all() #for now, to be changed
-    form = SubcrawlForm()
     user = request.user
     stations = Station.objects.all()
-    context_dict = {"friends": friends, "form":form, "user":user, "stations":stations}
+    places = Place.objects.all()
+    organiser = request.user
+    form = SubcrawlForm()
+    if request.method == 'POST':
+        form = SubcrawlForm(request.POST)
+        if form.is_valid():
+            if user:
+                subcrawl = form.save(commit=False)
+                subcrawl.sub_organiser = organiser
+                subcrawl.save()
+                return show_subcrawl(request, subcrawl.sub_slug)
+        else:
+            print(form.errors)
+
+    context_dict = {"friends": friends, "form":form, "user":user, "stations":stations, "places":places}
     response = render(request, 'pubway/new_subcrawl.html', context=context_dict)
     return response
+
+def show_subcrawl(request, subcrawl_name_slug):
+    #in progress
+    try:
+        subcrawl = Subcrawl.objects.get(sub_slug=subcrawl_name_slug)
+        return HttpResponse("Succesfully created a subcrawl %s." %subcrawl.sub_name)
+    except:
+        return HttpResponse("This subcrawl doen't exist.")
+
+@login_required
+def add_place_to_sub(request):
+    plc_id = None
+    if request.method == 'GET':
+        plc_id = request.GET['plc_id']
+        likes = 0
+    if plc_id:
+        plc = Place.objects.get(id=int(plc_id))
+        if plc:
+            likes = plc.likes + 1
+            plc.save()
+    return HttpResponse(likes)
 
 
 def index(request):

@@ -8,16 +8,17 @@ function urlToClipboard() {
   /* Alert the copied text */
   alert("Copied the text: " + copyText.value);
 }
+$('#timepicker').timepicker();
 
 $( function() {
-    $( "#datepicker" ).datepicker({
+    $( "#id_sub_date" ).datepicker({
         showButtonPanel: true,
         showOtherMonths: true,
         selectOtherMonths: true,
         dateFormat: "dd/mm/yy",
         minDate: 0,
         showOn: "both",
-        buttonImage: "{% static 'images/calendar_small.png' %}",
+        buttonImage: "/static/images/calendar_small.png",
         buttonImageOnly: true,
         buttonText: "Select date",
         changeMonth: true,
@@ -96,7 +97,7 @@ $.widget( "custom.combobox", {
       wasOpen = false;
 
     $( "<a>" )
-      .attr( "tabIndex", -1 )
+      .attr( "tabIndex", 1 )
       .attr( "title", "Show All Items" )
       .tooltip()
       .appendTo( this.wrapper )
@@ -137,7 +138,7 @@ $.widget( "custom.combobox", {
     }) );
   },
 
-  _removeIfInvalid: function( event, ui ) {
+    _removeIfInvalid: function( event, ui ) {
 
     // Selected an item, nothing to do
     if ( ui.item ) {
@@ -162,26 +163,23 @@ $.widget( "custom.combobox", {
 
     // Remove invalid value
     this.input
-      .val( "" )
-      .attr( "title", value + " didn't match any item" )
-      .tooltip( "open" );
-    this.element.val( "" );
-    this._delay(function() {
-      this.input.tooltip( "close" ).attr( "title", "" );
-    }, 2500 );
-    this.input.autocomplete( "instance" ).term = "";
-  },
+        .val( "" )
+        .attr( "title", value + " didn't match any item" )
+        .tooltip( "open" );
+        this.element.val( "" );
+        this._delay(function() {
+            this.input.tooltip( "close" ).attr( "title", "" );
+        }, 2500 );
+        this.input.autocomplete( "instance" ).term = "";
+    },
 
-  _destroy: function() {
-    this.wrapper.remove();
-    this.element.show();
-  }
-});
+    _destroy: function() {
+        this.wrapper.remove();
+        this.element.show();
+       }
+    });
 
-$( "#combobox" ).combobox();
-$( "#toggle" ).on( "click", function() {
-  $( "#combobox" ).toggle();
-});
+    $( "#combobox" ).combobox();
 } );
 
 

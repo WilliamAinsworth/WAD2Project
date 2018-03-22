@@ -140,3 +140,7 @@ AVATAR_PROVIDERS = ('avatar.providers.PrimaryAvatarProvider',
                     'avatar.providers.DefaultAvatarProvider',)
 AVATAR_DEFAULT_URL = 'images/avatardefault.jpeg'
 AVATAR_CHANGE_TEMPLATE = TEMPLATE_DIR + '/pubway/accounts/edit_avatar.html'
+
+# forms
+DATE_INPUT_FORMATS = ['%d-%m-%Y',
+                      '%d/%m/%Y']

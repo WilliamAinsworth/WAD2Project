@@ -15,8 +15,9 @@
 
     {% include 'pubway/elements/head_css.html' %}
 
+    {% block ext_style %}{% endblock %}
     <style>
-      {% block style %}{% endblock %}
+        {% block style %}{% endblock %}
 
 
     </style>
@@ -57,5 +58,6 @@
 
 </div>
 {% include 'pubway/elements/footer.html' %}
+{% block script %} {% endblock %}
 </body>
 </html>

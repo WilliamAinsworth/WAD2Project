@@ -2,12 +2,15 @@
 
 <!-- JQuery, needs to be before bootstrap -->
 <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
-<script src="{% static 'js/jquery-ui.min.js'%}"></script>
+
 
 <!-- Bootstrap core JavaScript
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<!-- JQuery UI, needs to be after JQuery and Bootstrap -->
+<script src="{% static 'js/jquery-ui.min.js'%}"></script>
 
 <!--google maps-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN1R6rdaYW__YOLaw8uHv5RxssqRl9Vbg&callback=myMap"
@@ -15,9 +18,6 @@
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN1R6rdaYW__YOLaw8uHv5RxssqRl9Vbg&libraries=places"></script>
 <script src="/static/js/stationPageScript.js"></script>
-
-<!-- Pubway -->
-<script type="text/javascript" src="{% static 'js/subcrawl.js' %}"></script>
 
 <!-- Add Page -->
 <script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>

@@ -1,30 +1,31 @@
 {% extends 'pubway/base.html' %}
 {% load staticfiles %}
-{% block title_block %} Organise a Subcrawl {% endblock %}
+{% block title_block %}
+    Organise a Subcrawl
+{% endblock %}
+
+{% block ext_style %}
+    <link rel="stylesheet" href="{% static 'css/jquery.ui.timepicker.css' %}">
+{% endblock %}
 
 {% block content %}
-
 <h1>Organise a Subcrawl</h1>
 <form id="subcrawl_form" method="post" action="/pubway/subcrawl/new/">
     {% csrf_token %}
     {% for hidden in form.hidden_fields %}
         {{ hidden }}
     {% endfor %}
+
     <div id="sub-options">
         <h3>Options</h3>
 
-        <p>Name: <input name='sub_name' type="text" id="sub_name"></p>
-        <p>Date: <input name='date' type="text" id="datepicker"></p>
-        <p>Share:
-        <fieldset>
-            <label for="radio-1">Public (share link)</label>
-            <input type="radio" name="radio-1" id="radio-1"> <br/>
-            <label for="radio-2">Private (invited only)</label>
-            <input type="radio" name="radio-1" id="radio-2">
-        </fieldset>
-        </p>
-
-        <p>
+        <p>Subcrawl name: <input name='sub_name' type="text" id="sub_name" value="{{ sub_name }}">{{form.sub_name.errors}}</p>
+        <p>Date: {{form.sub_date}}</p>
+        <p>Time: {{form.sub_time}}</p>
+        <p>Make accessible to anyone with a link: {{form.is_public}}</p>
+        <p>First Station: {{form.first_st}}</p>
+        <!--<p>
+        <p>Timepicker: <input type="text" id="timepicker" value=""/> </p>
             First Station:
             <div class="ui-widget">
                 <label>Select first station: </label>
@@ -35,32 +36,12 @@
                     {% endfor %}
                 </select>
             </div>
-        </p>
+        </p>-->
     </div>
+    <input type="submit" name="submit" value="Create Subcrawl" />
+{% endblock %}
 
-    <div id="sub-places">
-        <h3>Choose places to visit</h3>
-        <ul id="sortable">
-            {% for station in stations %}
-                <li class="ui-state-default ui-state-disabled">{{ station.name }}</li>
-            {% endfor %}
-            <li class="portlet">
-                <div class="portlet-header"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Place1</div>
-                <div class="portlet-content">Place1 info</div>
-            </li>
-            <li class="portlet">
-                <div class="portlet-header"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Place2</div>
-                <div class="portlet-content">Place2 info</div>
-            </li>
-            <li class="portlet">
-                <div class="portlet-header"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Place3</div>
-                <div class="portlet-content">Place3 info</div>
-            </li>
-        </ul>
-    </div>
-
-    <div id="sub-people">
-        <h3>Invite people</h3>
-    </div>
-</form>
+{% block script %}
+    <script type="text/javascript" src="{% static 'js/jquery.ui.timepicker.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/subcrawl.js' %}"></script>
 {% endblock %}

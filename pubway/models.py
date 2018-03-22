@@ -22,17 +22,22 @@ class UserProfile(models.Model):
 
 # Subcrawls
 class Subcrawl(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=128, unique=True)
-    date_time = models.DateTimeField()
-    is_public = models.BooleanField()
-    loc = models.ForeignKey('Place', null=True, on_delete=models.SET_NULL, related_name='subcrawl_loc')
-    places = models.ManyToManyField('Place')
-    organiser = models.ForeignKey('UserProfile', null=True, on_delete=models.SET_NULL)
-    firstSt = models.ForeignKey('Station', null=True, on_delete=models.SET_NULL)
-    
+    sub_name = models.CharField(max_length=128, unique=True)
+    sub_slug = models.SlugField(unique=True, default='')
+    sub_date = models.DateField(default="2000-01-01")
+    sub_time = models.TimeField(default="18:00")
+    is_public = models.BooleanField(default=False)
+    sub_cur_loc = models.ForeignKey('Place', null=True, on_delete=models.SET_NULL, related_name='subcrawl_loc')
+    sub_places = models.ManyToManyField('Place')
+    sub_organiser = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+    first_st = models.ForeignKey('Station', null=True, on_delete=models.SET_NULL)
+
+    def save(self, *args, **kwargs):
+        self.sub_slug = slugify(self.sub_name)
+        super(Subcrawl, self).save(*args, **kwargs)
+
     def __str__(self):
-        return self.name
+        return self.sub_name
 
 # StationPage
 class Station(models.Model):
