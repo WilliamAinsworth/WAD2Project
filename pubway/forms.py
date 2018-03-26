@@ -34,7 +34,7 @@ class UserEditForm(UserChangeForm):
 
 
 class PlaceForm(forms.ModelForm):
-    name = forms.CharField(max_length=128, required=True)
+    name = forms.CharField(max_length=128, required=True, )
     postcode = forms.CharField(max_length=7)
     address = forms.CharField(max_length=128)
     website = forms.URLField()
