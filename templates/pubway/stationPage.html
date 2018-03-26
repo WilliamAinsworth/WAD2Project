@@ -12,11 +12,14 @@
         /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
         #map {
-        height: 100%;
+        height: 400px;
+        width: 60%;
         }
-        #addPlaceForm {
-        display:none
-        }
+        .centered { margin-left: auto;
+          margin-right: auto;
+          margin-top: 3px;
+          margin-bottom: 3px;
+          text-align: center; }
     {% endblock %}
 
 </head>
@@ -24,6 +27,7 @@
 <body>
     {% block content %}
         {% if station %}
+            <div class="centered">
             <h1>{{ station.name }}</h1>
             <div id="stationTimes">
                 Train times: <br>
@@ -44,7 +48,7 @@
 
             <a class="btn btn-outline-primary btn-sm" href="{% url 'add_place' station.slug %}">Add a place to {{ station.name }}</a>.
 
-            <div id="map" style="width:60%;height:400px"></div>
+            <div class="centered" id="map">
 
             <script>
             function myMap() {
@@ -63,12 +67,11 @@
                 infowindow.open(map,marker);
             }
             </script>
-
+            </div>
+        </div>
         {% else %}
             <h1>Station does not exist!</h1>
         {% endif %}
-        Places content to come here </br>
-        Add Place to come
     {% endblock %}
 </body>
 

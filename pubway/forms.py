@@ -36,15 +36,24 @@ class UserEditForm(UserChangeForm):
 # Subcrawl Management
 
 class PlaceForm(forms.ModelForm):
-    name = forms.CharField(max_length=128, required=True, )
-    postcode = forms.CharField(max_length=7)
-    address = forms.CharField(max_length=128)
-    website = forms.URLField()
+    name = forms.CharField(max_length=128, required=True, help_text= "Name")
+    postcode = forms.CharField(max_length=7,help_text= "Postcode")
+    address = forms.CharField(max_length=128, help_text= "Address (Street and number)")
+    website = forms.URLField(help_text="Website URL")
     type = forms.ChoiceField(choices=Place.PLACE_CHOICES, initial=Place.PUB_CHOICE)
 
     class Meta:
         model = Place
         exclude = ('id','closeStation','likes','slug',)
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        url = cleaned_data.get('website')
+
+        if url and not url.startswith('http://') and not url.startswith('https://'):
+            url = 'http://' + url
+            cleaned_data['url'] = url
+            return cleaned_data
 
 class SubcrawlForm(forms.ModelForm):
     sub_name = forms.CharField(max_length=128,
