@@ -32,15 +32,17 @@
             </div>
 
             <div id="places_list">
+            <br/>
+            Top places for fun time around {{station.name }}
             <u1>
             {% for place in top_places %}
-                    <li>{{ place.name }}</li>
+                    <li><a href="{% url 'show_place' place.slug %}">{{ place.name }}</a></li>
             {% endfor %}
             </u1>
-            <br/>
+
             </div>
 
-            <a class="btn btn-outline-primary btn-sm" href="">Add a place</a>.
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'add_place' station.slug %}">Add a place</a>.
 
             <div id="map" style="width:60%;height:400px"></div>
 

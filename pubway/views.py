@@ -204,7 +204,7 @@ def show_place(request,place_name_slug):
 
     return render(request, 'pubway/placePage.html', context_dict)
 
-"""
+
 @login_required
 def add_place(request,station_name_slug):
 
@@ -232,4 +232,3 @@ def add_place(request,station_name_slug):
     context_dict = {'form': place_form, 'station': station}
     reponse = render(request,'pubway/add_place.html',context_dict)
     return reponse
-"""
