@@ -15,14 +15,17 @@ from django.contrib.auth.decorators import login_required
 
 
 #
-# User registration
+# User Management
 #
 
+# Used to register user
 def register(request):
+    # Handle different requests
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
+            # Also authenticate user automatically after registering.
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
@@ -32,16 +35,11 @@ def register(request):
         form = RegistrationForm()
     return render(request, 'pubway/accounts/registration_form.html', {'form': form})
 
-
+# Used to login user
 def user_login(request):
     # If the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST':
         # Gather the username and password provided by the user.
-        # This information is obtained from the login form.
-        # We use request.POST.get('<variable>') as opposed
-        # to request.POST['<variable>'], because the
-        # request.POST.get('<variable>') returns None if the
-        # value does not exist, while request.POST['<variable>'] # will raise a KeyError exception.
         username = request.POST.get('username')
         password = request.POST.get('password')
 
@@ -50,8 +48,6 @@ def user_login(request):
         user = authenticate(username=username, password=password)
 
         # If we have a User object, the details are correct.
-        # If None (Python's way of representing the absence of a value), no user
-        # with matching credentials was found.
         if user:
             # Is the account active? It could have been disabled.
             if user.is_active:
@@ -68,13 +64,10 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
 
     # The request is not a HTTP POST, so display the login form.
-    # This scenario would most likely be a HTTP GET.
     else:
-        # No context variables to pass to the template system, hence the
-        # blank dictionary object...
         return render(request, 'pubway/accounts/login.html', {})
 
-
+# Used to logout user
 @login_required
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
@@ -82,6 +75,7 @@ def user_logout(request):
     # Take the user back to the homepage.
     return HttpResponseRedirect(reverse('index'))
 
+# Show User's details
 @login_required
 def myprofile(request):
     if request.method == 'POST':
@@ -94,14 +88,16 @@ def myprofile(request):
         form = UserEditForm(instance=request.user)
     return render(request, 'pubway/accounts/edit_profile.html', {'form': form})
 
-
+#Used to change the user's password
 @login_required
 def changepassword(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
+            # Update the password
             user = form.save()
-            update_session_auth_hash(request, user)  # Important!
+            # Update the current session as well.
+            update_session_auth_hash(request, user)
             messages.success(request, 'Your password was successfully updated!')
             return redirect('index')
         else:

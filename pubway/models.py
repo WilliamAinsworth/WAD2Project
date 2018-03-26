@@ -10,12 +10,12 @@ from datetime import datetime
 
 # Authentication models
 
-
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='userprofile')
 
     # The additional attributes we wish to include.
+    # The avatar property is included automatically from django-avatars
     no_reviews = models.IntegerField(default=0)
     no_likes = models.IntegerField(default=0)
     subcrawls = models.ManyToManyField('Subcrawl')

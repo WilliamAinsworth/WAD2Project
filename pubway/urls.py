@@ -7,17 +7,16 @@ from pubway import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    #User Management
+    # User Management
     url(r'^accounts/register/$', views.register, name='register'),
 
-    url(r'^accounts/login/$',
-        auth_views.LoginView.as_view(
+    url(r'^accounts/login/$', auth_views.LoginView.as_view(
         template_name='pubway/accounts/login.html'),
-        name='login'),
+        name='login'),  # Use django's included form for login
     url(r'^accounts/logout/$', views.user_logout, name='logout'),
     url(r'^accounts/profile/$', views.myprofile, name='myprofile'),
     url(r'^accounts/password/$', views.changepassword, name='changepassword'),
-    #Subcrawl
+    # Subcrawl
     url(r'^subcrawl/new/$', views.new_subcrawl, name='new_subcrawl'),
     url(r'^subcrawl/(?P<subcrawl_name_slug>[\w\-]+)/$', views.show_subcrawl, name='show_subcrawl'),
     url(r'^(?P<station_name_slug>[\w\-]+)/$', views.show_station, name='show_station'),

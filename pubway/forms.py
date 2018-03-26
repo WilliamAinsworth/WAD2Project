@@ -12,6 +12,7 @@ from WAD2Project import settings
 
 # User Management
 
+# Registration form to be used to create a new User
 class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
@@ -21,17 +22,18 @@ class RegistrationForm(UserCreationForm):
         if not commit:
             raise NotImplementedError("Can't create User and UserProfile without database save")
         user = super(RegistrationForm, self).save(commit=True)
-        # UserProfile creation
+        # UserProfile creation from User model
         userprofile = UserProfile(user=user)
         userprofile.save()
         return user
 
-
+# Profile form that allows users to edit their details
 class UserEditForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username', 'email', 'password',)
 
+# Subcrawl Management
 
 class PlaceForm(forms.ModelForm):
     name = forms.CharField(max_length=128, required=True, )
