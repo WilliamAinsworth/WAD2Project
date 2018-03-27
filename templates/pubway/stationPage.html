@@ -12,14 +12,27 @@
         /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
         #map {
-        height: 400px;
-        width: 60%;
+            height: 400px;
+            width: 60%;
         }
-        .centered { margin-left: auto;
-          margin-right: auto;
-          margin-top: 3px;
-          margin-bottom: 3px;
-          text-align: center; }
+        .button {
+            background-color: white;
+            border: 2px solid #008CBA;
+            color: black;
+            padding: 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.5s; /* Safari */
+            transition-duration: 0.5s;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #008CBA;
+            color: white;
+        }
     {% endblock %}
 
 </head>
@@ -30,23 +43,29 @@
             <div class="centered">
             <h1>{{ station.name }}</h1>
             <div id="stationTimes">
-                Train times: <br>
+                <h4>Train times: </h4>
                 Monday - Saturday: {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }} <br>
                 Sunday: {{ station.firstTrainSun }} - {{ station.lastTrainSun }} <br>
             </div>
 
             <div id="places_list">
             <br/>
-            Top places for fun time around {{station.name }}
+            <h4>Top places for fun time around {{station.name }}</h4>
             <u1>
             {% for place in top_places %}
-                    <li><a href="{% url 'show_place' place.slug %}">{{ place.name }}</a></li>
+                    <a href="{% url 'show_place' place.slug %}">{{ place.name }}</a><br/>
             {% endfor %}
             </u1>
-
             </div>
 
-            <a class="btn btn-outline-primary btn-sm" href="{% url 'add_place' station.slug %}">Add a place to {{ station.name }}</a>.
+            {% if user.is_authenticated %}
+            <div id="buttons">
+            <br/>
+            <a class="button" href="{% url 'add_place' station.slug %}">Add a place to {{ station.name }}</a>
+            </div>
+            {% endif %}
+
+            </div>
 
             <div class="centered" id="map">
 
@@ -68,7 +87,7 @@
             }
             </script>
             </div>
-        </div>
+
         {% else %}
             <h1>Station does not exist!</h1>
         {% endif %}

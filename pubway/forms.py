@@ -36,10 +36,10 @@ class UserEditForm(UserChangeForm):
 # Subcrawl Management
 
 class PlaceForm(forms.ModelForm):
-    name = forms.CharField(max_length=128, required=True, help_text= "Name")
-    postcode = forms.CharField(max_length=7,help_text= "Postcode")
-    address = forms.CharField(max_length=128, help_text= "Address (Street and number)")
-    website = forms.URLField(help_text="Website URL")
+    name = forms.CharField(max_length=128, required=True, help_text= "Name (required)")
+    postcode = forms.CharField(max_length=7,help_text= "Postcode (required)")
+    address = forms.CharField(max_length=128, help_text= "Address (required)")
+    url = forms.URLField(help_text="Website URL",required=False)
     type = forms.ChoiceField(choices=Place.PLACE_CHOICES, initial=Place.PUB_CHOICE)
 
     class Meta:
