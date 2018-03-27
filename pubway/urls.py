@@ -20,8 +20,9 @@ urlpatterns = [
     url(r'^subcrawl/new/$', views.new_subcrawl, name='new_subcrawl'),
     url(r'^subcrawl/(?P<subcrawl_name_slug>[\w\-]+)/$', views.show_subcrawl, name='show_subcrawl'),
     url(r'^(?P<station_name_slug>[\w\-]+)/$', views.show_station, name='show_station'),
-    url(r'^place/(?P<place_name_slug>[\w\-]+)/$', views.show_place, name='show_place'),
+    url(r'^places/(?P<place_name_slug>[\w\-]+)/$', views.show_place, name='show_place'),
     url(r'^(?P<station_name_slug>[\w\-]+)/add_place/$', views.add_place, name='add_place'),
+    url(r'^like/$', views.like_place, name='like_place'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,6 +2,7 @@
 
 {% extends 'pubway/base.html' %}
 {% load staticfiles %}
+{% load pubway_template_tags %}
 
 <html>
 <head lang="en">
@@ -10,16 +11,36 @@
     {% endblock %}
     {% block style %}
     {% endblock %}
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/pubway-ajax.js" %}"></script>
 </head>
 
 <body>
     {% block content %}
         {% if place %}
-            <h1>{{ place.name }}</h1>
+            <h1 class="centered">{{ place.name }} ({{ place.type|getType }})</h1>
+
+            <div class="centered">
+                <br/>
+                Address: {{ place.address }} <br/>
+                Postcode: {{ place.postcode }} <br/>
+                <br/>
+                {% if place.url %}
+                Find out more here: <a href="{{ place.url}}">{{ place.name }}</a>
+                {% else %}{% endif %}
+
+                <div>
+                    <strong id="like_count">{{ place.likes }}</strong> people like this place
+                    {% if user.is_authenticated %}
+                    <button id="likes" data-placeid="{{place.id}}" class="btn btn-primary btn-sm" type="button">
+                    Like
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
         {% else %}
             <h1>Station does not exist!</h1>
         {% endif %}
-        Places content to come here </br>
     {% endblock %}
 </body>
 

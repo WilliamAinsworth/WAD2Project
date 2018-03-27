@@ -14,3 +14,10 @@ def get_top_places_list(stn=None):
     top_places = stationPlaces.order_by('-likes')[:5]
 
     return { 'top_plcs' : top_places }
+
+@register.filter(name='getType')
+def getType(value):
+    for element in Place.PLACE_CHOICES:
+        if value in element:
+            return element[1]
+    return "Type not found"

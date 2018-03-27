@@ -48,8 +48,8 @@
                 Sunday: {{ station.firstTrainSun }} - {{ station.lastTrainSun }} <br>
             </div>
 
-            <div id="places_list">
             <br/>
+            <div id="top_places_list">
             <h4>Top places for fun time around {{station.name }}</h4>
             <u1>
             {% for place in top_places %}
@@ -58,12 +58,40 @@
             </u1>
             </div>
 
-            {% if user.is_authenticated %}
+            <div id="all_places_list" style="display: none;">
+                <h4>All places around {{station.name }}</h4>
+                {% for place in places %}
+                    <a href="{% url 'show_place' place.slug %}">{{ place.name }}</a><br/>
+            {% endfor %}
+            </u1>
+            </div>
+
+
             <div id="buttons">
             <br/>
+            <button id="show_button" class="button" onclick="showButton();">Show all</button>
+            {% if user.is_authenticated %}
             <a class="button" href="{% url 'add_place' station.slug %}">Add a place to {{ station.name }}</a>
-            </div>
             {% endif %}
+            <script>
+            function showButton() {
+                var all_places_list = document.getElementById("all_places_list");
+                var top_places_list = document.getElementById("top_places_list");
+                var show_button = document.getElementById("show_button");
+
+                if (all_places_list.style.display === "none") {
+                    all_places_list.style.display = "block";
+                    top_places_list.style.display = "none";
+                    show_button.innerHTML = "Show top"
+                } else {
+                    all_places_list.style.display = "none";
+                    top_places_list.style.display = "block";
+                    show_button.innerHTML = "Show all"
+                }
+            }
+            </script>
+            </div>
+
 
             </div>
 

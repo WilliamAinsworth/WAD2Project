@@ -178,6 +178,7 @@ def show_station(request, station_name_slug):
         station = Station.objects.get(slug=station_name_slug)
 
         stationPlaces = Place.objects.filter(closeStation=station)
+        stationPlaces = stationPlaces.order_by('name')
         top_places = stationPlaces.order_by('-likes')[:5]
 
         context_dict['station'] = station
@@ -193,7 +194,9 @@ def show_place(request,place_name_slug):
     context_dict = {}
     try:
         place = Place.objects.get(slug=place_name_slug)
+        station = Station.objects.get(name=place.closeStation)
         context_dict['place'] = place
+        context_dict['station'] = station
 
     except Place.DoesNotExist:
         context_dict = {}
@@ -228,3 +231,16 @@ def add_place(request,station_name_slug):
     context_dict = {'form': place_form, 'station': station}
     reponse = render(request,'pubway/add_place.html',context_dict)
     return reponse
+
+@login_required
+def like_place(request):
+    if request.method == 'GET':
+        plc_id = request.GET['place_id']
+        likes = 0
+        if plc_id:
+            plc = Place.objects.get(id=int(plc_id))
+            if plc:
+                likes = plc.likes + 1
+                plc.likes = likes
+                plc.save()
+    return HttpResponse(likes)
