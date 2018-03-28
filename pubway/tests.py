@@ -95,6 +95,44 @@ class ModelTests(TestCase):
         except:
             print('Something went wrong in the populate() function')
 
+    def get_station(self, name):
+
+        from pubway.models import Station
+        try:
+            station = Station.objects.get(name=name)
+        except Station.DoesNotExist:
+            station = None
+        return station
+
+    def test_hillhead_station_added(self):
+        station = self.get_station('Hillhead')
+        self.assertIsNotNone(station)
+
+    def test_15_stations_populated(self):
+        stations = Station.objects.all()
+        self.assertTrue(stations.count()==15)
+
+    def get_place(self, name):
+
+        from pubway.models import Place
+        try:
+            place = Place.objects.get(name=name)
+        except Place.DoesNotExist:
+            place = None
+        return place
+
+    def test_hive_place_populated(self):
+        place = self.get_place('Hive')
+        self.assertIsNotNone(place)
+
+    def test_place_has_likes(self):
+        place = self.get_place('GUU')
+        self.assertIsNotNone(place.likes)
+
+    def test_place_has_address(self):
+        place = self.get_place('QMU')
+        self.assertIsNotNone(place.address)
+
 class SubcrawlTests(TestCase):
     def setUp(self):
         user = User.objects.create_user("testUsernameSub", "test@gmail.com", "testPassword")
