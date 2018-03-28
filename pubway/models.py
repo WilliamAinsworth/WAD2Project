@@ -22,12 +22,12 @@ class UserProfile(models.Model):
 
 # Subcrawls
 class Subcrawl(models.Model):
-    sub_name = models.CharField(max_length=128, unique=True)
     sub_slug = models.SlugField(unique=True, default='')
+    sub_name = models.CharField(max_length=128, unique=True)
     sub_date = models.DateField(default="2000-01-01")
     sub_time = models.TimeField(default="18:00")
     is_public = models.BooleanField(default=False)
-    sub_cur_loc = models.ForeignKey('Place', null=True, on_delete=models.SET_NULL, related_name='subcrawl_loc')
+    #sub_cur_loc = models.ForeignKey('Place', null=True, on_delete=models.SET_NULL, related_name='subcrawl_loc')
     sub_places = models.ManyToManyField('Place')
     sub_organiser = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     first_st = models.ForeignKey('Station', null=True, on_delete=models.SET_NULL)
@@ -64,7 +64,7 @@ class Station(models.Model):
 # Places
 class Place(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=128,default='')
+    name = models.CharField(max_length=128,default='', unique=True)
     postcode = models.CharField(max_length=7,default='')
     address = models.CharField(max_length=128,default='')
     url = models.URLField(default='')

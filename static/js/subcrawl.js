@@ -1,14 +1,56 @@
-function urlToClipboard() {
-  /* Get the text field */
-  var copyText = document.URL;
-  /* Select the text field */
-  copyText.select();
-  /* Copy the text inside the text field */
-  document.execCommand("Copy");
-  /* Alert the copied text */
-  alert("Copied the text: " + copyText.value);
+function slugify(string) {
+  return string
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
 }
-$('#timepicker').timepicker();
+
+function delete_place(div_id){
+    var el = document.getElementById(div_id);
+    el.parentNode.removeChild(el);
+}
+
+function get_minus_btn(par_id){
+    var btn = document.createElement('button');
+    btn.className = "ui-button ui-widget ui-corner-all ui-button-icon-only";
+    btn.id = par_id+"-minus";
+    btn.title = "Delete this place";
+    btn.addEventListener("click", function() {delete_place(par_id);});
+    btn.type = "button";
+    btn.innerHTML = '<span class="ui-icon ui-icon-minus"></span>';
+    return btn;
+}
+
+function add_plc_str(plc_name){
+    var vl = document.getElementById('plcs_str').value + plc_name + ",,";
+    document.getElementById('plcs_str').setAttribute('value', vl);
+}
+
+function add_sub_place(plc_name) {
+    var id = "sub_plc-"+slugify(plc_name);
+    if (document.getElementById(id)) {
+        alert(plc_name + " already added");
+    } else{
+        var newPlc = document.createElement('div');
+        newPlc.id = id;
+        newPlc.innerHTML = plc_name;
+        newPlc.style.width = "40em";
+        newPlc.appendChild(get_minus_btn(id));
+        document.getElementById('added_plcs').appendChild(newPlc);
+        add_plc_str(plc_name);
+    }
+}
+
+//alert(configuration['pubway']['places']['QMU'])
+
+/*$(function () {
+    $('#id_sub_time').datetimepicker();
+});*/
 
 $( function() {
     $( "#id_sub_date" ).datepicker({
@@ -182,4 +224,13 @@ $.widget( "custom.combobox", {
     $( "#combobox" ).combobox();
 } );
 
-
+function urlToClipboard() {
+  /* Get the text field */
+  var copyText = document.URL;
+  /* Select the text field */
+  copyText.select();
+  /* Copy the text inside the text field */
+  document.execCommand("Copy");
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}

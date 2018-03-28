@@ -1,17 +1,20 @@
 {% extends 'pubway/base.html' %}
 {% load staticfiles %}
 {% load pubway_template_tags %}
+{% load bootstrap %}
+{% load javascript_settings_tags %}
 {% block head_title %}
-    Subcrawl - Organise
+    Organise Subcrawl
 {% endblock %}
 
 {% block ext_style %}
     <link rel="stylesheet" href="{% static 'css/jquery.ui.timepicker.css' %}">
+    <link href="{% static 'css/new_subcrawl.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <h1>Organise a Subcrawl</h1>
-<form id="subcrawl_form" method="post" action="/pubway/subcrawl/new/">
+<form id="subcrawl_form" method="post" action="/pubway/subcrawl/new/" role="form">
     {% csrf_token %}
     {% for hidden in form.hidden_fields %}
         {{ hidden }}
@@ -20,32 +23,33 @@
     <div id="sub-options">
         <h3>Options</h3>
 
-        <p>Subcrawl name: <input name='sub_name' type="text" id="sub_name" value="{{ sub_name }}">{{form.sub_name.errors}}</p>
+        <p>Subcrawl name: {{form.sub_name.errors}}<input name='sub_name' type="text" id="sub_name" value="{{ sub_name }}"></p>
         <p>Date: {{form.sub_date}}</p>
-        <p>Time: {{form.sub_time}}</p>
+        <p id="timepicker">Time: {{form.sub_time}} (to be changed)</p>
         <p>Make accessible to anyone with a link: {{form.is_public}}</p>
         <p>First Station: {{form.first_st}}</p>
-        {% for station in stations %}
-            <p>Add place at station {{station}}: {% get_close_places_list station %}</p>
-        {% endfor %}
-        <!--<p>
-        <p>Timepicker: <input type="text" id="timepicker" value=""/> </p>
-            First Station:
-            <div class="ui-widget">
-                <label>Select first station: </label>
-                <select id="combobox">
-                    <option value="">Select one...</option>
-                    {% for station in stations %}
-                        <option value="{{station.name}}">{{station.name}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </p>-->
     </div>
-    <input type="submit" name="submit" value="Create Subcrawl" />
+    <div id="add_sub_plcs">
+        <h3>Choose places to visit</h3>
+        <div id="added_plcs"></div>
+
+        <div id="plc_adder">
+            <input type="text" value="Add a place" name="place_name"/>
+            <button class="ui-button ui-widget ui-corner-all ui-button-icon-only" title="Add a place"
+                    onclick="add_sub_place(place_name.value)" type="button">
+                <span class="ui-icon ui-icon-plus"></span>
+            </button>
+        </div>
+        <input type="text" id="plcs_str" name='sub_places_str' value="" style="visibility: hidden">
+    </input>
+
+    <div id="submit">
+        <input type="submit" name="submit" value="Create Subcrawl" onclick="" />
+    </div>
+</form>
 {% endblock %}
 
 {% block script %}
-    <script type="text/javascript" src="{% static 'js/jquery.ui.timepicker.js' %}"></script>
+    <script type="text/javascript">{% javascript_settings %}</script>
     <script type="text/javascript" src="{% static 'js/subcrawl.js' %}"></script>
 {% endblock %}

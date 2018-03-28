@@ -1,9 +1,9 @@
 from django.conf import settings
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.conf.urls.static import static
-from django.urls import reverse_lazy
 from django.contrib.auth import views as auth_views
 from pubway import views
+from pubway.models import Place
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -16,13 +16,20 @@ urlpatterns = [
     url(r'^accounts/logout/$', views.user_logout, name='logout'),
     url(r'^accounts/profile/$', views.myprofile, name='myprofile'),
     url(r'^accounts/password/$', views.changepassword, name='changepassword'),
-    # Subcrawl
-    url(r'^subcrawl/new/$', views.new_subcrawl, name='new_subcrawl'),
-    url(r'^subcrawl/(?P<subcrawl_name_slug>[\w\-]+)/$', views.show_subcrawl, name='show_subcrawl'),
     url(r'^(?P<station_name_slug>[\w\-]+)/$', views.show_station, name='show_station'),
     url(r'^places/(?P<place_name_slug>[\w\-]+)/$', views.show_place, name='show_place'),
     url(r'^(?P<station_name_slug>[\w\-]+)/add_place/$', views.add_place, name='add_place'),
+    # Subcrawl
+    url(r'^subcrawl/new/$', views.new_subcrawl, name='new_subcrawl'),
+    url(r'^subcrawl/(?P<subcrawl_name_slug>[\w\-]+)/$', views.show_subcrawl, name='show_subcrawl'),
     url(r'^like/$', views.like_place, name='like_place'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+def javascript_settings():
+    places = Place.objects.all()
+    js_conf = {
+        'places': {place.name : place.closeStation.name for place in places}
+    }
+    return js_conf

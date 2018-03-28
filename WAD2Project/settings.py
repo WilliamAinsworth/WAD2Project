@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'registration',
     'avatar',
+    'bootstrap3_datetime',
+    'bootstrapform',
+    'javascript_settings',
     # Our app
     'pubway',
 ]
