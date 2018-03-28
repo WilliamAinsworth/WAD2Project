@@ -1,4 +1,3 @@
-from crispy_forms.helper import FormHelper
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
@@ -57,13 +56,12 @@ class PlaceForm(forms.ModelForm):
 
 class SubcrawlForm(forms.ModelForm):
     sub_name = forms.CharField(max_length=128,
-                            help_text="Please enter the title of the subcrawl.")
+                               help_text="Please enter the title of the subcrawl.")
     sub_date = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS)
-    sub_time = forms.TimeField(widget=forms.TimeInput(attrs={'class':'timepicker'}))
+    sub_time = forms.TimeField()#widget=DateTimePicker()
     is_public = forms.BooleanField(initial=True)
     first_st = forms.ModelChoiceField(queryset=Station.objects.all())
-    #sub_places = forms.MultiValueField()
 
     class Meta:
         model = Subcrawl
-        fields = ('sub_name', 'sub_date', 'is_public','sub_time', 'first_st')
+        fields = ('sub_name', 'sub_date', 'is_public','sub_time', 'first_st',)

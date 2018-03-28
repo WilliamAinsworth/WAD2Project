@@ -3,7 +3,6 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from pubway.models import Station, UserProfile, Place, Subcrawl
-from django.views.generic import FormView
 
 from django.http import HttpResponse, HttpResponseRedirect
 #from django.core.urlresolvers import reverse #no longer supported
@@ -123,8 +122,17 @@ def new_subcrawl(request):
         form = SubcrawlForm(request.POST)
         if form.is_valid():
             if user:
+                sub_plcs = request.POST['sub_places_str'].split(',,')
                 subcrawl = form.save(commit=False)
                 subcrawl.sub_organiser = organiser
+                subcrawl.save()
+                for plc_name in sub_plcs:
+                    try:
+                        sub_plc = Place.objects.get(name=plc_name)
+                        subcrawl.sub_places.add(sub_plc)
+                    except:
+                        #print(plc_name)
+                        pass
                 subcrawl.save()
                 return show_subcrawl(request, subcrawl.sub_slug)
         else:
@@ -135,13 +143,14 @@ def new_subcrawl(request):
     return response
 
 def show_subcrawl(request, subcrawl_name_slug):
-    #in progress
     try:
         subcrawl = Subcrawl.objects.get(sub_slug=subcrawl_name_slug)
     except:
         subcrawl = None
-    context_dict = {"subcrawl": subcrawl, "slug": subcrawl_name_slug}
-    return render(request, 'pubway/show_subcrawl.html', context=context_dict)
+    user = request.user;
+    context_dict = {"subcrawl": subcrawl, "slug": subcrawl_name_slug, "user": user}
+    response = render(request, 'pubway/show_subcrawl.html', context=context_dict)
+    return response
 
 @login_required
 def add_place_to_sub(request):

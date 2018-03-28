@@ -1,19 +1,30 @@
 {% extends 'pubway/base.html' %}
 {% load staticfiles %}
 {% block head_title %}
-    Subcrawl{%if subcrawl %} - {{ subcrawl.sub_name }}{% endif %}
+    Subcrawl
 {% endblock %}
 
 {% block content %}
-    <h1>Subcrawl{%if subcrawl %} - {{ subcrawl.sub_name }}{% endif %}</h1>
+    <h1>Subcrawl - {{ subcrawl|default_if_none:slug }}</h1>
     {% if subcrawl %}
-        <p id="organiser">Organised by: {{ subcrawl.sub_organiser }} <button class="organiser">Change</button></p>
-        <p id="date">Date: {{ subcrawl.sub_date }} <span class="organiser">Change</span></p>
-        <p id="time">Time: {{ subcrawl.sub_time }} <span class="organiser">Change</span></p>
-        <p id="Places">Places: comming soon. <span class="organiser">Change</span></p>
+        <p id="organiser">Organised by: {{ subcrawl.sub_organiser }}</p>
+        <p id="date">Date: {{ subcrawl.sub_date }}</p>
+        <p id="time">Time: {{ subcrawl.sub_time }} (in {{ subcrawl.sub_date|timeuntil }})</p>
+        <p id="Places">Places:
+            <ul>
+                {% for plc in subcrawl.sub_places.all %}
+                    <li><a href="{% url 'show_place' plc.slug %}">{{ plc.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </p>
+        {% if user == subcrawl.sub_organiser %}
+            <button class="organiser" style="visibility: hidden">Change</button>
+        {% endif %}
     {% else %}
-        <p>Subcrawl {{slug}} dosn'e exist.</p>
+        <p>Subcrawl {{slug}} doesn't exist.</p>
+        <form action="{% url 'new_subcrawl' %}">
+            <input type="submit" value="Organise it!"/>
+        </form>
     {% endif %}
-
 
 {% endblock %}

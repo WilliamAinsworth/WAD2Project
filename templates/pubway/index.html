@@ -7,7 +7,18 @@
 
 {% block content %}
 
-<h1>Subway Map</h1>
+<b></b><h4>Hover over station names to get suggestions / Click to be brought to that station's page for more details.</h4>
+
+<img src="{% static "images/subwaymap.png" %}" alt="Subway Map" usemap="#Map">
+<map name="Map">
+    
+        {% for station in stations %}
+
+        <area shape="rect" title="{{station.name}}" coords="{{station.mapCoords}}" alt="{{station.name}}" onmouseover="mouseOver(alt)" 
+        href='{% url "show_station" station.slug %}'>
+    
+        {% endfor %}
+</map>
 
 
 <script>
@@ -25,11 +36,11 @@
 
 </script>
 
+
 <div id="Base">
-    <ul>
-        <li>
-            <b>Station</b>
-        </li>
+     <ul>
+            <h4><b><u>Station</u></b></h4>
+   
         <li>Train Times Monday - Saturday:
             </br>
             Hover over station to view train times.
@@ -37,30 +48,25 @@
         <li>Train Times Sunday:
             </br>
             Hover over station to view train times.
+            </li>
+    
 
-    </ul>
-
-
-
+    <h4><u><b>Top Places:</b></u></h4>
+</ul>
 </div>
 
 <div id="Govan" style="display:none;">
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "Govan" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
+        </h4>
         
         <li>Train Times Monday - Saturday:
             </br>
@@ -70,9 +76,8 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list 'Govan' %}
-        <!-- img src="{% static "images/Govan.jpg" %}" width="300" height=ato alt="Govan" -->
         {% endif %} {% endfor %}
     </ul>
     {% else %}
@@ -83,20 +88,15 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "Ibrox" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-       
+        </h4>
+  
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -105,7 +105,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>{% get_close_places_list 'Ibrox' %}
+        <h4><u><b>Top Places:</b></u></h4>{% get_close_places_list 'Ibrox' %}
 
 
         {% endif %} {% endfor %}
@@ -118,20 +118,15 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "Cessnock" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-        
+        </h4>
+    
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -140,7 +135,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list 'Cessnock' %}
         {% endif %} {% endfor %}
     </ul>
@@ -152,20 +147,15 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "Kinning Park" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-        
+        </h4>
+    
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -174,7 +164,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list 'Kinning Park' %}
         {% endif %} {% endfor %}
     </ul>
@@ -186,20 +176,15 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "Shields Road" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-        
+        </h4>
+    
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -208,7 +193,8 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <br>
+        <h4><h4><u><b>Top Places:</b></u></h4></h4>
         {% get_close_places_list 'Shields Road' %}
 
         {% endif %} {% endfor %}
@@ -221,20 +207,15 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "West Street" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-        
+        </h4>
+    
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -243,7 +224,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list 'West Street' %}
         {% endif %} {% endfor %}
     </ul>
@@ -255,20 +236,15 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "Bridge Street" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-        
+        </h4>
+       
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -277,7 +253,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list 'Bridge Street' %}
         {% endif %} {% endfor %}
     </ul>
@@ -289,11 +265,14 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "St. Enoch" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
+        </h4>
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -303,7 +282,7 @@
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
     
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list 'St. Enoch' %}
         {% endif %} {% endfor %}
     </ul>
@@ -315,20 +294,15 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "Buchanan Street" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-        
+        </h4>
+    
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -337,7 +311,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list 'Buchanan Street' %}
         {% endif %} {% endfor %}
     </ul>
@@ -349,20 +323,15 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "Cowcaddens" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-        
+        </h4>
+    
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -371,7 +340,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list 'Cowcaddens' %}
         {% endif %} {% endfor %}
     </ul>
@@ -384,21 +353,16 @@
     <ul>
         {% for station in stations %} {% if station.name == "Kelvinbridge" %}
 
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
+        </h4>
 
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-        
+    
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -407,7 +371,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
 
         {% get_close_places_list 'Kelvinbridge' %}
 
@@ -421,20 +385,15 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "Hillhead" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-        
+        </h4>
+    
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -443,7 +402,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list 'Hillhead' %}
         {% endif %} {% endfor %}
     </ul>
@@ -455,20 +414,15 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "Kelvinhall" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-        
+        </h4>
+    
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -477,7 +431,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list 'Kelvinhall' %}
         {% endif %} {% endfor %}
     </ul>
@@ -489,20 +443,14 @@
     {% if stations %}
     <ul>
         {% for station in stations %} {% if station.name == "Partick" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-       
+        </h4>
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -511,7 +459,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list 'Partick' %}
         {% endif %} {% endfor %}
     </ul>
@@ -525,22 +473,17 @@
         {% for station in stations %}
 
         {% if station.name == "St. George's Cross" %}
-        <li>
+        <h4>
             <b>
-                <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                <u>
+                    <a href="{% url 'show_station' station.slug %}">{{ station.name }}</a>
+                </u>
+                
             </b>
-        </li>
+        </h4>
         
 
-        <!--li>Train Times Monday - Saturday:
-            </br>
-            {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
-        </li>
-        <li>Train Times Sunday:
-            </br>
-            {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
-        </li -->
-        
+    
         <li>Train Times Monday - Saturday:
             </br>
             {{ station.firstTrainMonSat }} - {{ station.lastTrainMonSat }}
@@ -549,7 +492,7 @@
             </br>
             {{ station.firstTrainSun }} - {{ station.lastTrainSun }}
         </li>
-        <b>Top Places:</b>
+        <h4><u><b>Top Places:</b></u></h4>
         {% get_close_places_list "St. George's Cross" %}
         {% endif %} {% endfor %}
     </ul>
@@ -557,39 +500,7 @@
     <strong>There are no stations present.</strong>
     {% endif %}
 </div>
-<!-- div>
-    
-    {% if places %}
-    <ul>
-        {% for place in places %} 
-    
+<br>
 
-        <li>
-            <b>
-                <a href="{% url 'show_place' place.slug %}">{{ place.name }}</a>
-            </b>
-        </li>
-
-
-        {% endfor %}
-    {% else %}
-        <strong>There are no places present.</strong>
-    {% endif %}
-</div -->
-
-
-<img src="{% static "images/subwaymap.png" %}" alt="Subway Map" usemap="#Map">
-
-
-
-<map name="Map">
-    
-        {% for station in stations %}
-
-        <area shape="rect" title="{{station.name}}" coords="{{station.mapCoords}}" alt="{{station.name}}" onmouseover="mouseOver(alt)" 
-        href='{% url "show_station" station.slug %}'>
-    
-        {% endfor %}
-</map>
 
 {% endblock %}
