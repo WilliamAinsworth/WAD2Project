@@ -24,7 +24,7 @@ class Subcrawl(models.Model):
     sub_name = models.CharField(max_length=128, unique=True)
     sub_date = models.DateField(default="2000-01-01")
     sub_time = models.TimeField(default="18:00")
-    is_public = models.BooleanField(default=False)
+    #is_public = models.BooleanField(default=False)
     #sub_cur_loc = models.ForeignKey('Place', null=True, on_delete=models.SET_NULL, related_name='subcrawl_loc')
     sub_places = models.ManyToManyField('Place')
     sub_organiser = models.ForeignKey(User, default=None, on_delete=models.CASCADE)

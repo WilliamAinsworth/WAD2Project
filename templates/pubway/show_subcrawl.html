@@ -10,10 +10,11 @@
         <p id="organiser">Organised by: {{ subcrawl.sub_organiser }}</p>
         <p id="date">Date: {{ subcrawl.sub_date }}</p>
         <p id="time">Time: {{ subcrawl.sub_time }} (in {{ subcrawl.sub_date|timeuntil }})</p>
+        <p id="1stSt">Starting at <a href="{% url 'show_station' subcrawl.first_st.slug %}">{{ subcrawl.first_st.name }}</a></p>
         <p id="Places">Places:
             <ul>
                 {% for plc in subcrawl.sub_places.all %}
-                    <li><a href="{% url 'show_place' plc.slug %}">{{ plc.name }}</a></li>
+                    <li><a href="{% url 'show_place' plc.slug %}">{{ plc.name }} (at {{plc.closeStation}})</a></li>
                 {% endfor %}
             </ul>
         </p>

@@ -56,12 +56,13 @@ class PlaceForm(forms.ModelForm):
 
 class SubcrawlForm(forms.ModelForm):
     sub_name = forms.CharField(max_length=128,
-                               help_text="Please enter the title of the subcrawl.")
+                               help_text="Please enter the title of the subcrawl.",
+                               error_messages = {'unique': "This name has already been taken."})
     sub_date = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS)
     sub_time = forms.TimeField()#widget=DateTimePicker()
-    is_public = forms.BooleanField(initial=True)
+    #is_public = forms.BooleanField(initial=True)
     first_st = forms.ModelChoiceField(queryset=Station.objects.all())
 
     class Meta:
         model = Subcrawl
-        fields = ('sub_name', 'sub_date', 'is_public','sub_time', 'first_st',)
+        fields = ('sub_name', 'sub_date','sub_time', 'first_st',)

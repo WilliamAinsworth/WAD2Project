@@ -26,9 +26,16 @@ function get_minus_btn(par_id){
     return btn;
 }
 
-function add_plc_str(plc_name){
-    var vl = document.getElementById('plcs_str').value + plc_name + ",,";
-    document.getElementById('plcs_str').setAttribute('value', vl);
+function set_plcs_str(){
+    var plcs = document.getElementById('added_plcs').children;
+    var s = "";
+    for(var i=0; i<plcs.length; i++){
+        var plc = plcs[i];
+        s += plc.children[1].innerHTML;
+        s += ",,";
+        document.getElementById('plcs_str').setAttribute('value', s);
+    }
+    document.getElementById('subcrawl_form').submit();
 }
 
 function add_sub_place(plc_name) {
@@ -38,14 +45,17 @@ function add_sub_place(plc_name) {
     } else{
         var newPlc = document.createElement('div');
         newPlc.id = id;
+        newPlc.className = "portlet";
         newPlc.appendChild(get_minus_btn(id));
-        var t = document.createTextNode(plc_name);
+        var t = document.createElement('span');
+        t.className = 'portlet-header';
+        t.innerHTML = plc_name;
         newPlc.appendChild(t);
         document.getElementById('added_plcs').appendChild(newPlc);
-        add_plc_str(plc_name);
     }
 }
 
+//DATEPICKER
 $( function() {
     $( "#id_sub_date" ).datepicker({
         showButtonPanel: true,
@@ -62,14 +72,15 @@ $( function() {
     });
 } );
 
+//SORTABLE (drag and drop places)
 $( function() {
-    $( "#sortable" ).sortable({
-        connectWith: "#sortable",
+    $( "#added_plcs" ).sortable({
+        connectWith: "#added_plcs",
         cancel: ".ui-state-disabled .portlet-toggle",
         handle: ".portlet-header",
         placeholder: "portlet-placeholder ui-corner-all"
     });
-    $( "#sortable" ).disableSelection();
+    $( "#added_plcs" ).disableSelection();
     $( ".portlet" )
         .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
         .find( ".portlet-header" )
@@ -83,7 +94,7 @@ $( function() {
     });
 } );
 
-
+//AUTOCOMPLETE
 $( function() {
 $.widget( "custom.combobox", {
   _create: function() {
@@ -216,6 +227,7 @@ $.widget( "custom.combobox", {
     });
 
     $( "#combobox" ).combobox();
+    $( "#combobox-1stSt" ).combobox();
 } );
 
 function urlToClipboard() {
