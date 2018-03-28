@@ -112,11 +112,9 @@ def changepassword(request):
 #
 @login_required
 def new_subcrawl(request):
-    friends = UserProfile.objects.all() #for now, to be changed
     user = request.user
     stations = Station.objects.all()
     places = Place.objects.all()
-    organiser = request.user
     form = SubcrawlForm()
     if request.method == 'POST':
         form = SubcrawlForm(request.POST)
@@ -124,7 +122,7 @@ def new_subcrawl(request):
             if user:
                 sub_plcs = request.POST['sub_places_str'].split(',,')
                 subcrawl = form.save(commit=False)
-                subcrawl.sub_organiser = organiser
+                subcrawl.sub_organiser = user
                 subcrawl.save()
                 for plc_name in sub_plcs:
                     try:
@@ -138,7 +136,7 @@ def new_subcrawl(request):
         else:
             print(form.errors)
 
-    context_dict = {"friends": friends, "form":form, "user":user, "stations":stations, "places":places}
+    context_dict = {"form":form, "stations":stations, "places":places}
     response = render(request, 'pubway/new_subcrawl.html', context=context_dict)
     return response
 

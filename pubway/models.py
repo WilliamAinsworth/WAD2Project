@@ -20,8 +20,8 @@ class UserProfile(models.Model):
 
 # Subcrawls
 class Subcrawl(models.Model):
-    sub_slug = models.SlugField(unique=True, default='')
     sub_name = models.CharField(max_length=128, unique=True)
+    sub_slug = models.SlugField(unique=True, default='')
     sub_date = models.DateField(default="2000-01-01")
     sub_time = models.TimeField(default="18:00")
     #is_public = models.BooleanField(default=False)

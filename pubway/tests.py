@@ -63,7 +63,6 @@ class IndexTests(TestCase):
         self.assertRedirects(response, reverse('index'))
 
 class StationTests(TestCase):
-
     def test_slug_creation(self):
         station = Station('St. something different,')
         station.save()
@@ -95,3 +94,31 @@ class ModelTests(TestCase):
             print('The function populate() does not exist or is incorrect')
         except:
             print('Something went wrong in the populate() function')
+
+class SubcrawlTests(TestCase):
+    def setUp(self):
+        user = User.objects.create_user("testUsernameSub", "test@gmail.com", "testPassword")
+        hh = Station.objects.get_or_create(name='Hillhead')[0]
+        subcrawl = Subcrawl.objects.get_or_create(sub_name="test sub", sub_organiser = user, first_st=hh)[0]
+    def testSubcrawlExists(self):
+        # Test that the new subcrawl exists
+        try:
+            Subcrawl.objects.get(sub_name="test sub")
+        except:
+            self.fail("Subcrawl testsub doesn't exist")
+        # Test that the number of users is 1
+        self.assertEqual(1, Subcrawl.objects.count(), "Number of Subcrawls must be 1")
+
+    def testSubcrawlOptions(self):
+        subcrawl = Subcrawl.objects.get(sub_name="test sub")
+        hh = Station.objects.get_or_create(name='Hillhead')[0]
+        self.assertEqual('testUsernameSub', subcrawl.sub_organiser.username, "Organiser should be testUsernameSub")
+        self.assertEqual(hh, subcrawl.first_st, "First station should be Hillhead")
+        self.assertEqual('test-sub',subcrawl.sub_slug, "slug should be test-sub")
+
+    def testPlaces(self):
+        subcrawl = Subcrawl.objects.get(sub_name="test sub")
+        self.assertEqual(0, subcrawl.sub_places.count(), "Number of places must be initially 0")
+        qmu = Place.objects.get_or_create(name='QMU')[0]
+        subcrawl.sub_places.add(qmu)
+        self.assertEqual(1, subcrawl.sub_places.count(), "Number of places must be 1")

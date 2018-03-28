@@ -1,7 +1,6 @@
 {% extends 'pubway/base.html' %}
 {% load staticfiles %}
 {% load pubway_template_tags %}
-{% load javascript_settings_tags %}
 {% block head_title %}
     Organise Subcrawl
 {% endblock %}
@@ -62,6 +61,5 @@
 {% endblock %}
 
 {% block script %}
-    <script type="text/javascript">{% javascript_settings %}</script>
     <script type="text/javascript" src="{% static 'js/subcrawl.js' %}"></script>
 {% endblock %}

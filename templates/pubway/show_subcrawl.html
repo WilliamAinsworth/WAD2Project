@@ -18,6 +18,7 @@
                 {% endfor %}
             </ul>
         </p>
+        <p id="share">Share link: <a href="{% url 'show_subcrawl' subcrawl.sub_slug %}">{% url 'show_subcrawl' subcrawl.sub_slug %}</a></p>
         {% if user == subcrawl.sub_organiser %}
             <button class="organiser" style="visibility: hidden">Change</button>
         {% endif %}
