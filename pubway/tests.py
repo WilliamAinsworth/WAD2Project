@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from pubway.models import UserProfile, User
+from pubway.models import UserProfile, User, Station, Place
 from django.contrib.auth import views as auth_views
 
 
@@ -37,3 +37,5 @@ class UserManagementTestCase(TestCase):
             'new_password1': 'newTestPassword',
             'new_password2': 'newTestPassword'})
         self.assertTrue(form.is_valid())
+
+class StationTests(TestCase):
