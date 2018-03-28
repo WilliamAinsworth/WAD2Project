@@ -8,3 +8,4 @@ django-avatar==4.1.0
 django-registration==2.4.1
 django-registration-redux==2.2
 django-javascript-settings==1.1.2
+coverage==4.5.1

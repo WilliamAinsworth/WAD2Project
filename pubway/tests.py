@@ -39,3 +39,8 @@ class UserManagementTestCase(TestCase):
         self.assertTrue(form.is_valid())
 
 class StationTests(TestCase):
+
+    def test_slug_creation(self):
+        station = Station('St. something different,')
+        station.save()
+        self.assertEqual(station.slug,'st-something-different')

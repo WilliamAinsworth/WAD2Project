@@ -179,3 +179,7 @@ fabric.properties
 
 #Django migrations
 pubway/migrations/
+
+#Coverage tests
+htmlcov
+.coverage
