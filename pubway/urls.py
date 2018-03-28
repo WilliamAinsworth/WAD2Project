@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^accounts/register/$', views.register, name='register'),
 
     url(r'^accounts/login/$', auth_views.LoginView.as_view(
-        template_name='pubway/accounts/login.html'),
+        template_name='pubway/accounts/login/.html'),
         name='login'),  # Use django's included form for login
     url(r'^accounts/logout/$', views.user_logout, name='logout'),
     url(r'^accounts/profile/$', views.myprofile, name='myprofile'),

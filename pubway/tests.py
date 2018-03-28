@@ -52,14 +52,15 @@ class IndexTests(TestCase):
 
         # Access login page via POST with user data
         try:
-            response = self.client.post(reverse('login'), {'username': 'testuser', 'password': 'test1234'})
+            response = self.client.post(reverse('login'), {'username': 'testuser', 'password': 'test1234'},follow=True)
         except:
             try:
-                response = self.client.post(reverse('rango:login'), {'username': 'testuser', 'password': 'test1234'})
+                response = self.client.post(reverse('pubway:login'), {'username': 'testuser', 'password': 'test1234'})
             except:
                 return False
 
         # Check it redirects to index
+        self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('index'))
 
 class StationTests(TestCase):
