@@ -44,25 +44,6 @@ class UserManagementTestCase(TestCase):
             'new_password2': 'newTestPassword'})
         self.assertTrue(form.is_valid())
 
-class IndexTests(TestCase):
-
-    def test_login_redirects_to_index(self):
-        # Create a user
-        test_utils.create_user()
-
-        # Access login page via POST with user data
-        try:
-            response = self.client.post(reverse('login'), {'username': 'testuser', 'password': 'test1234'},follow=True)
-        except:
-            try:
-                response = self.client.post(reverse('pubway:login'), {'username': 'testuser', 'password': 'test1234'})
-            except:
-                return False
-
-        # Check it redirects to index
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('index'))
-
 class StationTests(TestCase):
     def test_slug_creation(self):
         station = Station('St. something different,')
