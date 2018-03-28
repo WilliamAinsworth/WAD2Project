@@ -38,7 +38,7 @@ class PlaceForm(forms.ModelForm):
     name = forms.CharField(max_length=128, required=True, help_text= "Name (required)")
     postcode = forms.CharField(max_length=7,help_text= "Postcode (required)")
     address = forms.CharField(max_length=128, help_text= "Address (required)")
-    url = forms.URLField(help_text="Website URL",required=False)
+    website = forms.URLField(help_text="Website URL",required=False)
     type = forms.ChoiceField(choices=Place.PLACE_CHOICES, initial=Place.PUB_CHOICE)
 
     class Meta:
@@ -51,7 +51,7 @@ class PlaceForm(forms.ModelForm):
 
         if url and not url.startswith('http://') and not url.startswith('https://'):
             url = 'http://' + url
-            cleaned_data['url'] = url
+            cleaned_data['website'] = url
             return cleaned_data
 
 class SubcrawlForm(forms.ModelForm):

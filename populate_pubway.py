@@ -26,17 +26,17 @@ def populate():
         "Kelvinhall": {"firstTrainMonSat": time(6, 34), "lastTrainMonSat": time(23, 20), "firstTrainSun": time(10, 4), "lastTrainSun": time(17, 54),"latitude":55.870939, "longitude":-4.299956, "mapCoords":"50,110,210,150"}
     }
     places = {
-        "QMU": {"postcode":"G12 8QN", "address":"22 University Gardens, Glasgow", "url":"http://www.qmunion.org.uk", "closeStation":Station(name='Hillhead'), "likes":72,"type":0},
-        "GUU": {"postcode":"G12 8LX", "address":"32 University Avenue, Glasgow", "url":"http://www.guu.co.uk", "closeStation":Station(name='Kelvinbridge'), "likes": 12,"type":0},
-        "Bank Street": {"postcode":"G12 8LZ", "address":"52 Bank St, Glasgow G12 8LZ", "url":"http://www.bankst.co.uk", "closeStation":Station(name='Kelvinbridge'), "likes":35,"type":1},
-        "The Sparkle Horse": {"postcode":"G11 5QR", "address":"Dowanhill St, Glasgow", "url":"http://www.thesparklehorse.com", "closeStation": Station(name='Kelvinhall'), "likes":22,"type":0},
-        "Pizza Crolla": {"postcode":"G1 2LL", "address":"156 Buchanan St, Glasgow", "url":"", "closeStation":Station(name='Buchanan Street'), "likes":5, "type":1},
-        "Vodka Wodka": {"postcode":"G12 8SJ", "address":"31 Ashton Lane", "url":"http://vodkawodka.co.uk/a/","closeStation":Station(name='Hillhead'), "likes":255, "type":0},
-        "Ashoka": {"postcode":"G12 8SJ", "address":"19 Ashton Lane", "url":"http://www.ashokaashtonlane.com/","closeStation":Station(name='Hillhead'), "likes":55, "type":1},
-        "Cafe Andaluz": {"postcode": "G12 8AA", "address": "2 Cresswell Lane", "url": "","closeStation": Station(name='Hillhead'), "likes": 65, "type": 1},
-        "Hillhead Bookclub": {"postcode": "G12 8BH", "address": "17 Cresswell Lane", "url": "http://hillheadbookclub.co.uk/","closeStation": Station(name='Hillhead'), "likes": 85, "type": 0},
-        "Hive": {"postcode": "G12 8LX", "address": "32 University Avenue", "url": "http://www.guu.co.uk/hive","closeStation": Station(name='Kelvinbridge'), "likes": 185, "type": 2},
-        "Jinty McGuinty's": {"postcode": "G12 8SJ", "address": "29 Ashton Lane", "url": "","closeStation": Station(name='Hillhead'), "likes": 25, "type": 0},
+        "QMU": {"postcode":"G12 8QN", "address":"22 University Gardens, Glasgow", "website":"http://www.qmunion.org.uk", "closeStation":Station(name='Hillhead'), "likes":72,"type":0},
+        "GUU": {"postcode":"G12 8LX", "address":"32 University Avenue, Glasgow", "website":"http://www.guu.co.uk", "closeStation":Station(name='Kelvinbridge'), "likes": 12,"type":0},
+        "Bank Street": {"postcode":"G12 8LZ", "address":"52 Bank St, Glasgow G12 8LZ", "website":"http://www.bankst.co.uk", "closeStation":Station(name='Kelvinbridge'), "likes":35,"type":1},
+        "The Sparkle Horse": {"postcode":"G11 5QR", "address":"Dowanhill St, Glasgow", "website":"http://www.thesparklehorse.com", "closeStation": Station(name='Kelvinhall'), "likes":22,"type":0},
+        "Pizza Crolla": {"postcode":"G1 2LL", "address":"156 Buchanan St, Glasgow", "website":"", "closeStation":Station(name='Buchanan Street'), "likes":5, "type":1},
+        "Vodka Wodka": {"postcode":"G12 8SJ", "address":"31 Ashton Lane", "website":"http://vodkawodka.co.uk/a/","closeStation":Station(name='Hillhead'), "likes":255, "type":0},
+        "Ashoka": {"postcode":"G12 8SJ", "address":"19 Ashton Lane", "website":"http://www.ashokaashtonlane.com/","closeStation":Station(name='Hillhead'), "likes":55, "type":1},
+        "Cafe Andaluz": {"postcode": "G12 8AA", "address": "2 Cresswell Lane", "website": "","closeStation": Station(name='Hillhead'), "likes": 65, "type": 1},
+        "Hillhead Bookclub": {"postcode": "G12 8BH", "address": "17 Cresswell Lane", "website": "http://hillheadbookclub.co.uk/","closeStation": Station(name='Hillhead'), "likes": 85, "type": 0},
+        "Hive": {"postcode": "G12 8LX", "address": "32 University Avenue", "website": "http://www.guu.co.uk/hive","closeStation": Station(name='Kelvinbridge'), "likes": 185, "type": 2},
+        "Jinty McGuinty's": {"postcode": "G12 8SJ", "address": "29 Ashton Lane", "website": "","closeStation": Station(name='Hillhead'), "likes": 25, "type": 0},
     }
 
     for station,station_data in stations.items():
@@ -47,7 +47,7 @@ def populate():
             print("- {0}".format(str(s)))
 
     for place,place_data in places.items():
-        p = add_place(place,place_data["postcode"],place_data["address"],place_data["url"],place_data["closeStation"],place_data["likes"],place_data["type"])
+        p = add_place(place,place_data["postcode"],place_data["address"],place_data["website"],place_data["closeStation"],place_data["likes"],place_data["type"])
 
     print("Populating places ...")
     for p in Place.objects.all():
@@ -65,11 +65,11 @@ def add_station(name,firstTrainMonSat,lastTrainMonSat,firstTrainSun,lastTrainSun
     s.save()
     return s
 
-def add_place(name,postcode,address,url,closeStation,likes,type):
+def add_place(name,postcode,address,website,closeStation,likes,type):
     p = Place.objects.get_or_create(name=name)[0]
     p.postcode = postcode
     p.address = address
-    p.url = url
+    p.website = website
     p.closeStation = closeStation
     p.likes=likes
     p.type = type

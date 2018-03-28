@@ -25,8 +25,8 @@
                 Address: {{ place.address }} <br/>
                 Postcode: {{ place.postcode }} <br/>
                 <br/>
-                {% if place.url %}
-                Find out more here: <a href="{{ place.url}}">{{ place.name }}</a>
+                {% if place.website %}
+                Find out more here: <a href="{{ place.website}}">{{ place.name }}</a>
                 {% else %}{% endif %}
 
                 <div>

@@ -65,7 +65,7 @@ class Place(models.Model):
     name = models.CharField(max_length=128,default='', unique=True)
     postcode = models.CharField(max_length=7,default='')
     address = models.CharField(max_length=128,default='')
-    url = models.URLField(default='')
+    website = models.URLField(default='')
     closeStation = models.ForeignKey(Station,default='',on_delete=models.SET_NULL, null=True) #many-to-one mapping
     likes = models.IntegerField(default=0)
 
