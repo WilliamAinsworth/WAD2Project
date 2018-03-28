@@ -26,10 +26,3 @@ urlpatterns = [
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-def javascript_settings():
-    places = Place.objects.all()
-    js_conf = {
-        'places': {place.name : place.closeStation.name for place in places}
-    }
-    return js_conf

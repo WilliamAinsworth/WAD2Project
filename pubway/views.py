@@ -3,7 +3,6 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from pubway.models import Station, UserProfile, Place, Subcrawl
-from django.views.generic import FormView
 
 from django.http import HttpResponse, HttpResponseRedirect
 #from django.core.urlresolvers import reverse #no longer supported

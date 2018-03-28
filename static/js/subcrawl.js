@@ -38,19 +38,13 @@ function add_sub_place(plc_name) {
     } else{
         var newPlc = document.createElement('div');
         newPlc.id = id;
-        newPlc.innerHTML = plc_name;
-        newPlc.style.width = "40em";
         newPlc.appendChild(get_minus_btn(id));
+        var t = document.createTextNode(plc_name);
+        newPlc.appendChild(t);
         document.getElementById('added_plcs').appendChild(newPlc);
         add_plc_str(plc_name);
     }
 }
-
-//alert(configuration['pubway']['places']['QMU'])
-
-/*$(function () {
-    $('#id_sub_time').datetimepicker();
-});*/
 
 $( function() {
     $( "#id_sub_date" ).datepicker({
