@@ -1,9 +1,15 @@
+from django.contrib.auth.models import *
+from django.contrib.auth import views as auth_views
 from django.test import TestCase
+from django.urls import *
 from django.urls import reverse
 
-from pubway.models import UserProfile, User, Station, Place
-from django.contrib.auth import views as auth_views
+from pubway.views import *
+from pubway.models import *
+from pubway.forms import *
+from pubway.urls import *
 
+import pubway.test_utils as test_utils
 
 # Test case In the area of the user profile
 class UserManagementTestCase(TestCase):
@@ -38,9 +44,54 @@ class UserManagementTestCase(TestCase):
             'new_password2': 'newTestPassword'})
         self.assertTrue(form.is_valid())
 
+class IndexTests(TestCase):
+
+    def test_login_redirects_to_index(self):
+        # Create a user
+        test_utils.create_user()
+
+        # Access login page via POST with user data
+        try:
+            response = self.client.post(reverse('login'), {'username': 'testuser', 'password': 'test1234'})
+        except:
+            try:
+                response = self.client.post(reverse('rango:login'), {'username': 'testuser', 'password': 'test1234'})
+            except:
+                return False
+
+        # Check it redirects to index
+        self.assertRedirects(response, reverse('index'))
+
 class StationTests(TestCase):
 
     def test_slug_creation(self):
         station = Station('St. something different,')
         station.save()
         self.assertEqual(station.slug,'st-something-different')
+
+    def test_place_form_is_displayed_correctly(self):
+
+        try:
+            response = self.client.get(reverse('add_place'))
+        except:
+            try:
+                response = self.client.get(reverse('pubway:add_place'))
+            except:
+                return False
+
+        #Check rendering of form
+        self.assertIn('<strong>Add Place</strong><br />'.lower(), response.content.decode('ascii').lower())
+        self.assertTrue(isinstance(response.context['place_form'], PlaceForm))
+
+class ModelTests(TestCase):
+
+    def setUp(self):
+        try:
+            from populate_pubway import populate
+            populate()
+        except ImportError:
+            print('The module populate_pubway does not exist')
+        except NameError:
+            print('The function populate() does not exist or is incorrect')
+        except:
+            print('Something went wrong in the populate() function')
